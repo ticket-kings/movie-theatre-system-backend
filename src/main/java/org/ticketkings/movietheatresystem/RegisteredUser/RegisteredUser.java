@@ -5,9 +5,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "RegisteredUsers")
+@Table(name = "registered_user")
 public class RegisteredUser {
-    
+
     @Id
 
     private String name, phoneNumber, emailAddress, password, billingInformation;

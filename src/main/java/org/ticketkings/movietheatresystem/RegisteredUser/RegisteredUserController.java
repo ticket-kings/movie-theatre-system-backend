@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
-@RequestMapping(path = "api/v1/RegisteredUser")
+@RequestMapping(path = "api/v1/registered_user")
 public class RegisteredUserController {
 
     private final RegisteredUserService registeredUserService;
