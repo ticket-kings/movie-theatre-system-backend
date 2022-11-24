@@ -32,9 +32,9 @@ public class RegisteredUserController {
         registeredUserService.addNewRegisteredUser(registeredUser);
     }
 
-    @DeleteMapping
-    public void deleteRegisteredUser(@PathVariable("emailAddress") String id) {
-        registeredUserService.deleteRegisteredUser();
+    @DeleteMapping(path = "{emailAddress}")
+    public void deleteRegisteredUser(@PathVariable("emailAddress") String emailAddress) {
+        registeredUserService.deleteRegisteredUser(emailAddress);
     }
 
 }
