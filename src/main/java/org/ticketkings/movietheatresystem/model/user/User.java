@@ -27,17 +27,17 @@ public abstract class User {
     private Integer creditId;
 
     @Column(name="card_id")
-    private Integer card_id;
+    private Integer cardId;
 
     public User() {
     }
 
-    public User(Integer id, String name, String emailAddress, Integer creditId, Integer card_id) {
+    public User(Integer id, String name, String emailAddress, Integer creditId, Integer cardId) {
         this.id = id;
         this.name = name;
         this.emailAddress = emailAddress;
         this.creditId = creditId;
-        this.card_id = card_id;
+        this.cardId = cardId;
     }
 
 }
