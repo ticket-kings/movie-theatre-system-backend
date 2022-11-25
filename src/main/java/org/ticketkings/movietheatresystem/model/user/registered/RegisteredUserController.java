@@ -15,26 +15,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping(path = "api/v1/user/registered")
 public class RegisteredUserController {
 
-    private final RegisteredUserService registeredUserService;
+	private final RegisteredUserService registeredUserService;
 
-    @Autowired
-    public RegisteredUserController(RegisteredUserService registeredUserService) {
-        this.registeredUserService = registeredUserService;
-    }
+	@Autowired
+	public RegisteredUserController(RegisteredUserService registeredUserService) {
+		this.registeredUserService = registeredUserService;
+	}
 
-    @GetMapping
-    public List<RegisteredUser> getRegisteredUsers() {
-        return registeredUserService.getRegisteredUsers();
-    }
+	@GetMapping
+	public List<RegisteredUser> getRegisteredUsers() {
+		return registeredUserService.getRegisteredUsers();
+	}
 
-    @PostMapping
-    public void addRegisteredUser(@RequestBody RegisteredUser registeredUser) {
-        registeredUserService.addNewRegisteredUser(registeredUser);
-    }
+	@PostMapping
+	public void addRegisteredUser(@RequestBody RegisteredUser registeredUser) {
+		registeredUserService.addNewRegisteredUser(registeredUser);
+	}
 
-    @DeleteMapping(path = "/{emailAddress}")
-    public void deleteRegisteredUser(@PathVariable("emailAddress") String emailAddress) {
-        registeredUserService.deleteRegisteredUser(emailAddress);
-    }
+	@DeleteMapping(path = "/{emailAddress}")
+	public void deleteRegisteredUser(@PathVariable("emailAddress") String emailAddress) {
+		registeredUserService.deleteRegisteredUser(emailAddress);
+	}
 
 }
