@@ -1,4 +1,4 @@
-package org.ticketkings.movietheatresystem.model.Credit;
+package org.ticketkings.movietheatresystem.model.credit;
 
 import java.util.Date;
 
