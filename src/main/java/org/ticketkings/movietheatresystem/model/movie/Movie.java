@@ -1,5 +1,6 @@
 package org.ticketkings.movietheatresystem.model.movie;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -14,19 +15,31 @@ import lombok.Setter;
 public class Movie {
 
     @Id
+    @Column(name="id")
     private Integer id;
+
+    @Column(name="name")
     private String name;
 
+    @Column(name="imageUrl")
     private String imageUrl;
+
+    @Column(name="description")
     private String description;
+
+    @Column(name="duration")
     private Integer duration;
 
-    public Movie(Integer id, String name, String imageUrl, String description, Integer duration) {
+    @Column(name="is_released")
+    private Boolean isReleased;
+
+    public Movie(Integer id, String name, String imageUrl, String description, Integer duration, Boolean isReleased) {
         this.id = id;
         this.name = name;
         this.imageUrl = imageUrl;
         this.description = description;
         this.duration = duration;
+        this.isReleased = isReleased;
     }
 
     public Movie() {

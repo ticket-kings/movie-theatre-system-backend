@@ -24,10 +24,10 @@ public class Seat {
     private Integer price;
 
     @Column(name="premium")
-    private boolean premium;
+    private Boolean premium;
 
     @Column(name="reserved")
-    private boolean reserved;
+    private Boolean reserved;
 
     @Column(name="showtime_id")
     private Integer showtimeId;
@@ -37,7 +37,7 @@ public class Seat {
     @JoinColumn(name="showtime_id", insertable = false, updatable = false)
     private Showtime showtime;
 
-    public Seat(Integer id, String seatNumber, Integer price, boolean premium, boolean reserved) {
+    public Seat(Integer id, String seatNumber, Integer price, Boolean premium, Boolean reserved) {
         this.id = id;
         this.price = price;
         this.seatNumber = seatNumber;
