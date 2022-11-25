@@ -1,5 +1,6 @@
 package org.ticketkings.movietheatresystem.model.user.registered;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.ticketkings.movietheatresystem.model.user.User;
@@ -9,10 +10,11 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-@PrimaryKeyJoinColumn(name = "user_id")
+@PrimaryKeyJoinColumn(name="user_id")
 @Table(name="registered_user")
 public class RegisteredUser extends User {
 
+    @JsonIgnore
     @Column(name="user_id", insertable = false, updatable = false)
     private Integer userId;
 

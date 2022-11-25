@@ -1,29 +1,25 @@
 package org.ticketkings.movietheatresystem.model.user.guest;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import org.ticketkings.movietheatresystem.model.user.User;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Getter
 @Setter
+@PrimaryKeyJoinColumn(name="user_id")
 @Table(name="guest_user")
-public class GuestUser {
+public class GuestUser extends User {
 
-    @Id
+    @JsonIgnore
+    @Column(name="user_id", insertable = false, updatable = false)
     private Integer userId;
-    private String name;
-    private String emailAddress;
-    private int credit;
 
-    public GuestUser(Integer userId, String name, String emailAddress, Integer credit) {
+    public GuestUser(Integer userId) {
         this.userId = userId;
-        this.name = name;
-        this.emailAddress = emailAddress;
-        this.credit = credit;
     }
 
     public GuestUser() {
