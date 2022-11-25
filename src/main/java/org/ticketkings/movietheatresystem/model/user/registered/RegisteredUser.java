@@ -24,7 +24,8 @@ public class RegisteredUser extends User {
     @Column(name="password")
     private String password;
 
-    public RegisteredUser(String address, String password) {
+    public RegisteredUser(Integer userId, String address, String password) {
+        this.userId = userId;
         this.address = address;
         this.password = password;
     }

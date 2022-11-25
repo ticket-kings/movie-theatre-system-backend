@@ -21,7 +21,7 @@ public class Seat {
     private String seatNumber;
 
     @Column(name="price")
-    private Integer price;
+    private Float price;
 
     @Column(name="premium")
     private Boolean premium;
@@ -37,7 +37,7 @@ public class Seat {
     @JoinColumn(name="showtime_id", insertable = false, updatable = false)
     private Showtime showtime;
 
-    public Seat(Integer id, String seatNumber, Integer price, Boolean premium, Boolean reserved) {
+    public Seat(Integer id, String seatNumber, Float price, Boolean premium, Boolean reserved) {
         this.id = id;
         this.price = price;
         this.seatNumber = seatNumber;
