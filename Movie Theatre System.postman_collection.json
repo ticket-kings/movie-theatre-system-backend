@@ -167,19 +167,6 @@
 			]
 		},
 		{
-			"name": "Theatre",
-			"item": [
-				{
-					"name": "getTheatres",
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "Showing",
 			"item": [
 				{
