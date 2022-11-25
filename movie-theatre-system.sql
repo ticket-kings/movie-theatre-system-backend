@@ -81,8 +81,8 @@ VALUES
 
 CREATE TABLE IF NOT EXISTS movie_theatre_system.movie (
 	id int PRIMARY KEY auto_increment,
-    image_url varchar(250) NOT NULL,
     name varchar(50) NOT NULL,
+    image_url varchar(250) NOT NULL,
     description varchar(200) NOT NULL,
     duration int NOT NULL,
     is_released boolean NOT NULL
@@ -90,9 +90,9 @@ CREATE TABLE IF NOT EXISTS movie_theatre_system.movie (
 
 INSERT INTO movie_theatre_system.movie (name, image_url, description, duration, is_released)
 VALUES 
-    ("Black Panther: Wakanda Forever", "https://www.google.com/url?sa=i&url=https%3A%2F%2Fm.imdb.com%2Ftitle%2Ftt9114286%2F%3Fref_%3Dm_ttfc_tt&psig=AOvVaw2LCl_5BEiUv4Ad7BzWTu2M&ust=1669433179454000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCIjP4q6xyPsCFQAAAAAdAAAAABAE", "Queen Ramonda, Shuri, M'Baku, Okoye and the Dora Milaje fight to protect their nation from intervening world powers in the wake of King T'Challa's death.", 161, true),
-    ("Avatar: The Way of Water", "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FAvatar%3A_The_Way_of_Water&psig=AOvVaw1A2ZQryXzYWxRcHIk0AM0Q&ust=1669433233735000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCLir7sixyPsCFQAAAAAdAAAAABAE", "Jake Sully and Ney'tiri have formed a family and are doing everything to stay together. However, they must leave their home and explore the regions of Pandora.", 190, false),
-    ("Black Adam", "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FBlack_Adam_%2528film%2529&psig=AOvVaw0k-IvEIMTDmW3rWPEvLC8k&ust=1669433290108000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCIjbvOOxyPsCFQAAAAAdAAAAABAE", "In ancient Kahndaq, Teth Adam was bestowed the almighty powers of the gods. After using these powers for vengeance, he was imprisoned, becoming Black Adam.", 125, false);
+    ("Black Panther: Wakanda Forever", "https://m.media-amazon.com/images/M/MV5BNTM4NjIxNmEtYWE5NS00NDczLTkyNWQtYThhNmQyZGQzMjM0XkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_FMjpg_UX1000_.jpg", "Queen Ramonda, Shuri, M'Baku, Okoye and the Dora Milaje fight to protect their nation from intervening world powers in the wake of King T'Challa's death.", 161, true),
+    ("Avatar: The Way of Water", "https://preview.redd.it/k2u12aobjgy81.jpg?auto=webp&s=c1b783b53f910ee9a18c451a38015ce5c9c1f7fc", "Jake Sully and Ney'tiri have formed a family and are doing everything to stay together. However, they must leave their home and explore the regions of Pandora.", 190, false),
+    ("Black Adam", "https://www.theilluminerdi.com/wp-content/uploads/2022/09/black-adam-heroes.jpg", "In ancient Kahndaq, Teth Adam was bestowed the almighty powers of the gods. After using these powers for vengeance, he was imprisoned, becoming Black Adam.", 125, false);
 
 CREATE TABLE IF NOT EXISTS movie_theatre_system.theatre (
 	id int PRIMARY KEY auto_increment,
