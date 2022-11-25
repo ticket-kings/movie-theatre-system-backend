@@ -1,11 +1,11 @@
 package org.ticketkings.movietheatresystem.model.seat;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
+import org.ticketkings.movietheatresystem.model.showtime.Showtime;
 
 @Entity
 @Getter
@@ -14,18 +14,35 @@ import lombok.Setter;
 public class Seat {
 
     @Id
-    private String id;
-    private String seatNumber;
-    private int price;
-    private boolean reserved;
-    private boolean available;
+    @Column(name="id")
+    private Integer id;
 
-    public Seat(int price, String seatNumber, boolean reserved, boolean available, String id) {
+    @Column(name="seat_number")
+    private String seatNumber;
+
+    @Column(name="price")
+    private Integer price;
+
+    @Column(name="premium")
+    private boolean premium;
+
+    @Column(name="reserved")
+    private boolean reserved;
+
+    @Column(name="showtime_id")
+    private Integer showtimeId;
+
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name="showtime_id", insertable = false, updatable = false)
+    private Showtime showtime;
+
+    public Seat(Integer id, String seatNumber, Integer price, boolean premium, boolean reserved) {
+        this.id = id;
         this.price = price;
         this.seatNumber = seatNumber;
+        this.premium = premium;
         this.reserved = reserved;
-        this.available = available;
-        this.id = id;
     }
 
     public Seat() {

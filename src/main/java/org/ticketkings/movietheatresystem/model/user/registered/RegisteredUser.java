@@ -1,6 +1,6 @@
 package org.ticketkings.movietheatresystem.model.user.registered;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 import org.ticketkings.movietheatresystem.model.user.User;
@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Table(name="registered_user")
 public class RegisteredUser extends User {
 
-    @JsonIgnore
+    @JsonBackReference
     @Column(name="user_id", insertable = false, updatable = false)
     private Integer userId;
 
