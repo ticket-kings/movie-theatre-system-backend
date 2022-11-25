@@ -1,4 +1,4 @@
-package org.ticketkings.movietheatresystem.model.Seat;
+package org.ticketkings.movietheatresystem.model.seat;
 
 import java.util.List;
 

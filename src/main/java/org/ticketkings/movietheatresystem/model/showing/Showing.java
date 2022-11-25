@@ -1,10 +1,10 @@
-package org.ticketkings.movietheatresystem.model.Showing;
+package org.ticketkings.movietheatresystem.model.showing;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.ticketkings.movietheatresystem.model.Showtime.Showtime;
+import org.ticketkings.movietheatresystem.model.showtime.Showtime;
 import org.ticketkings.movietheatresystem.model.movie.Movie;
 
 import lombok.Getter;

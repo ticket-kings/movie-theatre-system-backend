@@ -1,13 +1,10 @@
-package org.ticketkings.movietheatresystem.model.Showtime;
+package org.ticketkings.movietheatresystem.model.showtime;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.ticketkings.movietheatresystem.model.Seat.Seat;
 
 import lombok.Getter;
 import lombok.Setter;

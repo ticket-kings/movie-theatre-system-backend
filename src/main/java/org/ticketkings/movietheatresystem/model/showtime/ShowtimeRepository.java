@@ -1,4 +1,4 @@
-package org.ticketkings.movietheatresystem.model.Showtime;
+package org.ticketkings.movietheatresystem.model.showtime;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
