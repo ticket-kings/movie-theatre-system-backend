@@ -16,9 +16,9 @@ public class RegisteredUserController {
 		this.registeredUserService = registeredUserService;
 	}
 
-	@GetMapping("/{id}")
-	public RegisteredUser getRegisteredUser(@PathVariable Integer id) {
-		return registeredUserService.getRegisteredUser(id);
+	@GetMapping("/login")
+	public RegisteredUser getRegisteredUser(@RequestParam Integer id, @RequestParam String password) {
+		return registeredUserService.login(id, password);
 	}
 
 	@GetMapping

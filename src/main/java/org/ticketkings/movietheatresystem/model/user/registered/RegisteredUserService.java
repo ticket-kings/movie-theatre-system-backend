@@ -1,12 +1,12 @@
 package org.ticketkings.movietheatresystem.model.user.registered;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import org.ticketkings.movietheatresystem.model.user.guest.GuestUser;
 
 @Service
 public class RegisteredUserService {
@@ -17,14 +17,19 @@ public class RegisteredUserService {
         this.registeredUserRepository = registeredUserRepository;
     }
 
-    public RegisteredUser getRegisteredUser(Integer id) {
+    public RegisteredUser login(Integer id, String password) {
         Optional<RegisteredUser> optional = registeredUserRepository.findById(id);
 
         if(optional.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This student does not exist.");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This registered user id does not exist.");
         }
 
-        return optional.get();
+        RegisteredUser user = optional.get();
+        if(!Objects.equals(user.getPassword(), password)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Password is incorrect.");
+        }
+
+        return user;
     }
 
     public List<RegisteredUser> getRegisteredUsers() {
