@@ -9,12 +9,12 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
+@PrimaryKeyJoinColumn(name = "user_id")
 @Table(name="registered_user")
 public class RegisteredUser extends User {
 
-    @PrimaryKeyJoinColumn(name="id", referencedColumnName="userId")
-    @Column(name="user_id")
-    private String userId;
+    @Column(name="user_id", insertable = false, updatable = false)
+    private Integer userId;
 
     @Column(name="address")
     private String address;

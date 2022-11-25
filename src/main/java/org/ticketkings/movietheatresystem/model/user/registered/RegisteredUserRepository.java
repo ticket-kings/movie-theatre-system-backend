@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RegisteredUserRepository extends JpaRepository<RegisteredUser, String> {
 
-    RegisteredUser findByAddress(String address, String userId);
+//    RegisteredUser findByAddress(String address, String userId);
 
 }
