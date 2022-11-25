@@ -1,4 +1,4 @@
-package org.ticketkings.movietheatresystem.RegisteredUser;
+package org.ticketkings.movietheatresystem.model.user.registered;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
-@RequestMapping(path = "api/v1/RegisteredUser")
+@RequestMapping(path = "api/v1/user/registered")
 public class RegisteredUserController {
 
     private final RegisteredUserService registeredUserService;
@@ -32,7 +32,7 @@ public class RegisteredUserController {
         registeredUserService.addNewRegisteredUser(registeredUser);
     }
 
-    @DeleteMapping(path = "{emailAddress}")
+    @DeleteMapping(path = "/{emailAddress}")
     public void deleteRegisteredUser(@PathVariable("emailAddress") String emailAddress) {
         registeredUserService.deleteRegisteredUser(emailAddress);
     }

@@ -1,4 +1,4 @@
-package org.ticketkings.movietheatresystem.RegisteredUser;
+package org.ticketkings.movietheatresystem.model.user.registered;
 
 import java.util.Optional;
 
@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RegisteredUserRepository extends JpaRepository<RegisteredUser, String> {
 
-    @Query("SELECT r from RegisteredUser r WHERE r.emailAddress = ?1")
-    Optional<RegisteredUser> findRegisteredUser(String emailAddress);
+    RegisteredUser findByAddress(String address, String userId);
 
 }
