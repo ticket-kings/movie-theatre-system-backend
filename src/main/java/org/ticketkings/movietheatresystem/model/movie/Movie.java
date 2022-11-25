@@ -1,4 +1,4 @@
-package org.Movie;
+package org.ticketkings.movietheatresystem.model.movie;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
