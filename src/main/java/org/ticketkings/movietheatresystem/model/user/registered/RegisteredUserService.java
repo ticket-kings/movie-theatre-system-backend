@@ -17,6 +17,16 @@ public class RegisteredUserService {
         this.registeredUserRepository = registeredUserRepository;
     }
 
+    public RegisteredUser getRegisteredUser(Integer id) {
+        Optional<RegisteredUser> optional = registeredUserRepository.findById(id);
+
+        if(optional.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This student does not exist.");
+        }
+
+        return optional.get();
+    }
+
     public List<RegisteredUser> getRegisteredUsers() {
         return registeredUserRepository.findAll();
     }
