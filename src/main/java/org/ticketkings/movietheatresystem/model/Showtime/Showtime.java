@@ -1,6 +1,7 @@
 package org.ticketkings.movietheatresystem.model.Showtime;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,12 +19,17 @@ import lombok.Setter;
 public class Showtime {
 
     @Id
+    private Integer id;
 
-    ArrayList<Seat> seats;
-    private int id, time;
+    private Date time;
 
-    public Showtime(int id, int time) {
+//    private ArrayList<Seat> seats;
+
+    public Showtime(Integer id, Date time) {
         this.id = id;
         this.time = time;
+    }
+
+    public Showtime() {
     }
 }

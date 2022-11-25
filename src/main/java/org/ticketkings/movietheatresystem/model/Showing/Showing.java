@@ -17,12 +17,16 @@ import lombok.Setter;
 public class Showing {
 
     @Id
+    private Integer id;
 
-    private Movie movie;
-    private Showtime showtime;
+//    private Movie movie;
+//    private Showtime showtime;
 
     public Showing(Movie movie, Showtime showtime) {
-        this.movie = movie;
-        this.showtime = showtime;
+//        this.movie = movie;
+//        this.showtime = showtime;
+    }
+
+    public Showing() {
     }
 }

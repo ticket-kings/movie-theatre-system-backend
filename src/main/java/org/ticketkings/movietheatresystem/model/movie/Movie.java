@@ -14,19 +14,21 @@ import lombok.Setter;
 public class Movie {
 
     @Id
+    private Integer id;
+    private String name;
 
-    private String name, description;
-    private int duration, id;
+    private String imageUrl;
+    private String description;
+    private Integer duration;
 
-    public Movie(String name, String description, int duration, int id) {
+    public Movie(Integer id, String name, String imageUrl, String description, Integer duration) {
+        this.id = id;
         this.name = name;
+        this.imageUrl = imageUrl;
         this.description = description;
         this.duration = duration;
-        this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "Movie [name=" + name + ", description=" + description + ", duration=" + duration + ", id=" + id + "]";
+    public Movie() {
     }
 }

@@ -14,19 +14,21 @@ import lombok.Setter;
 public class Seat {
 
     @Id
-
     private String id;
     private String seatNumber;
     private int price;
     private boolean reserved;
-    private boolean availible;
+    private boolean available;
 
-    public Seat(int price, String seatNumber, boolean reserved, boolean availible, String id) {
+    public Seat(int price, String seatNumber, boolean reserved, boolean available, String id) {
         this.price = price;
         this.seatNumber = seatNumber;
         this.reserved = reserved;
-        this.availible = availible;
+        this.available = available;
         this.id = id;
+    }
+
+    public Seat() {
     }
 
     public void reserveSeat() {
