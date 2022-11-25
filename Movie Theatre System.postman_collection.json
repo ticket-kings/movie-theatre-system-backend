@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "7cdc07a9-d5ba-4637-8f34-a39e1265a965",
+		"_postman_id": "9eed16cd-dcab-49b1-9f3f-d26315961eed",
 		"name": "Movie Theatre System",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "24018936"
+		"_exporter_id": "24495164"
 	},
 	"item": [
 		{
@@ -138,6 +138,19 @@
 								"movie"
 							]
 						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Theatre",
+			"item": [
+				{
+					"name": "getTheatres",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
