@@ -1,11 +1,6 @@
 package org.ticketkings.movietheatresystem.model.movie;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.ticketkings.movietheatresystem.model.showing.Showing;
 
@@ -40,7 +35,7 @@ public class Movie {
     private Boolean isReleased;
 
     @JsonBackReference
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "showing", insertable = false, updatable = false)
     private Showing showing;
 

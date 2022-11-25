@@ -2,11 +2,7 @@ package org.ticketkings.movietheatresystem.model.showing;
 
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.ticketkings.movietheatresystem.model.Theatre.Theatre;
 import org.ticketkings.movietheatresystem.model.movie.Movie;
@@ -34,16 +30,19 @@ public class Showing {
     private int showtimeId;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "showing")
-    private List<Movie> movies;
+    @OneToOne
+    @JoinColumn(name = "movie_id", insertable = false, updatable = false)
+    private Movie movie;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "showing")
-    private List<Theatre> theatres;
+    @OneToOne
+    @JoinColumn(name = "theatre_id", insertable = false, updatable = false)
+    private Theatre theatre;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "showing")
-    private List<Showtime> showtimes;
+    @OneToOne
+    @JoinColumn(name = "showtime_id", insertable = false, updatable = false)
+    private Showtime showtime;
 
     public Showing(int movieId, int theatreId, int showtimeId) {
         this.movieId = movieId;

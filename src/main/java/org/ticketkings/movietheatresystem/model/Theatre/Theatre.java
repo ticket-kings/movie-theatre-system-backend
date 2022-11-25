@@ -1,11 +1,6 @@
 package org.ticketkings.movietheatresystem.model.Theatre;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.ticketkings.movietheatresystem.model.showing.Showing;
 
@@ -21,18 +16,18 @@ import lombok.Setter;
 public class Theatre {
 
     @Id
+    @Column(name = "id")
+    private Integer id;
+
     @Column(name = "name")
     private String name;
 
-    @Column(name = "Id")
-    private int id;
-
     @JsonBackReference
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "showing", insertable = false, updatable = false)
     private Showing showing;
 
-    public Theatre(String name, int id) {
+    public Theatre(String name, Integer id) {
         this.name = name;
         this.id = id;
     }

@@ -30,7 +30,7 @@ public class Showtime {
     private List<Seat> seats;
 
     @JsonBackReference
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "showing", insertable = false, updatable = false)
     private Showing showing;
 
