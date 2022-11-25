@@ -28,13 +28,8 @@ public class RegisteredUserController {
 	}
 
 	@PostMapping
-	public void addRegisteredUser(@RequestBody RegisteredUser registeredUser) {
-		registeredUserService.addNewRegisteredUser(registeredUser);
-	}
-
-	@DeleteMapping(path = "/{emailAddress}")
-	public void deleteRegisteredUser(@PathVariable("emailAddress") String emailAddress) {
-		registeredUserService.deleteRegisteredUser(emailAddress);
+	public RegisteredUser addRegisteredUser(@RequestBody RegisteredUser registeredUser) {
+		return registeredUserService.createRegisteredUser(registeredUser);
 	}
 
 }

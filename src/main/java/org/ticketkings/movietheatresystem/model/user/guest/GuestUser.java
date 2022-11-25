@@ -14,13 +14,13 @@ import javax.persistence.Table;
 public class GuestUser {
 
     @Id
-    private Integer id;
+    private Integer userId;
     private String name;
     private String emailAddress;
     private int credit;
 
-    public GuestUser(Integer id, String name, String emailAddress, Integer credit) {
-        this.id = id;
+    public GuestUser(Integer userId, String name, String emailAddress, Integer credit) {
+        this.userId = userId;
         this.name = name;
         this.emailAddress = emailAddress;
         this.credit = credit;
