@@ -155,6 +155,19 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Showing",
+			"item": [
+				{
+					"name": "getShowings",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

@@ -5,10 +5,12 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 import org.ticketkings.movietheatresystem.model.seat.Seat;
+import org.ticketkings.movietheatresystem.model.showing.Showing;
 
 @Entity
 @Getter
@@ -17,15 +19,20 @@ import org.ticketkings.movietheatresystem.model.seat.Seat;
 public class Showtime {
 
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     private Integer id;
 
-    @Column(name="time")
+    @Column(name = "time")
     private Date time;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "showtime")
     private List<Seat> seats;
+
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "showing", insertable = false, updatable = false)
+    private Showing showing;
 
     public Showtime(Integer id, Date time) {
         this.id = id;
