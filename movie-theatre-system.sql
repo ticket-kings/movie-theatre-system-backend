@@ -168,9 +168,9 @@ CREATE TABLE IF NOT EXISTS movie_theatre_system.seat(
 INSERT INTO movie_theatre_system.seat (price, seat_number, premium, reserved, showtime_id)
 VALUES
 	(10, "A1",  true,  true, 1),
-    (10, "A2",  true,  true, 1),
-    (10, "A3", false, false, 1),
-    (10, "A4", false,  true, 1),
+    (10, "A2",  true, false, 1),
+    (10, "A3", false,  true, 1),
+    (10, "A4", false, false, 1),
     (10, "A5", false, false, 1),
     (10, "B1", false, false, 1),
     (10, "B2", false, false, 1),
@@ -233,12 +233,11 @@ CREATE TABLE IF NOT EXISTS movie_theatre_system.ticket(
     seat_id int NOT NULL,
     payment_id int NOT NULL,
     CONSTRAINT FOREIGN KEY (seat_id) REFERENCES seat (id) ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT FOREIGN KEY (payment_id) REFERENCES payment (id) ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT FOREIGN KEY (payment_id) REFERENCES ticket_payment (payment_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 INSERT INTO movie_theatre_system.ticket (seat_id, payment_id)
 VALUES
 	(1, 2),
-    (3, 3),
-    (4, 4);
+    (3, 3);
 
