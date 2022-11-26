@@ -4,21 +4,28 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.ticketkings.movietheatresystem.model.card.Card;
+import org.ticketkings.movietheatresystem.model.card.CardService;
 
 @RestController
 @RequestMapping(path = "api/v1/user/registered")
 public class RegisteredUserController {
 
 	private final RegisteredUserService registeredUserService;
+	private final CardService cardService;
 
 	@Autowired
-	public RegisteredUserController(RegisteredUserService registeredUserService) {
+	public RegisteredUserController(
+			RegisteredUserService registeredUserService,
+			CardService cardService
+	) {
 		this.registeredUserService = registeredUserService;
+		this.cardService = cardService;
 	}
 
 	@GetMapping("/login")
-	public RegisteredUser getRegisteredUser(@RequestParam Integer id, @RequestParam String password) {
-		return registeredUserService.login(id, password);
+	public RegisteredUser getRegisteredUser(@RequestParam String email, @RequestParam String password) {
+		return registeredUserService.login(email, password);
 	}
 
 	@GetMapping
@@ -28,6 +35,10 @@ public class RegisteredUserController {
 
 	@PostMapping
 	public RegisteredUser createRegisteredUser(@RequestBody RegisteredUser registeredUser) {
+		Card card = registeredUser.getCard();
+		cardService.createCard(card);
+
+		registeredUser.setCardId(card.getId());
 		return registeredUserService.createRegisteredUser(registeredUser);
 	}
 

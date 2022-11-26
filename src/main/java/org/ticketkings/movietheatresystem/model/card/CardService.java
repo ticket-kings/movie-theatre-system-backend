@@ -17,4 +17,8 @@ public class CardService {
         return cardRepository.findAll();
     }
 
+    public Card createCard(Card card) {
+        return cardRepository.save(card);
+    }
+
 }

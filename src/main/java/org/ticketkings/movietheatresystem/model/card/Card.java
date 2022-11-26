@@ -15,6 +15,7 @@ import java.util.List;
 public class Card {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id")
     private Integer id;
 

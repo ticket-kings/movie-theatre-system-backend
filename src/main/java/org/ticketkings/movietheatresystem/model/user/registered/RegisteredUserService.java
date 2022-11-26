@@ -17,11 +17,11 @@ public class RegisteredUserService {
         this.registeredUserRepository = registeredUserRepository;
     }
 
-    public RegisteredUser login(Integer id, String password) {
-        Optional<RegisteredUser> optional = registeredUserRepository.findById(id);
+    public RegisteredUser login(String email, String password) {
+        Optional<RegisteredUser> optional = registeredUserRepository.findByEmailAddress(email);
 
         if(optional.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This registered user id does not exist");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The registered user email does not exist");
         }
 
         RegisteredUser user = optional.get();
@@ -39,6 +39,11 @@ public class RegisteredUserService {
     public RegisteredUser createRegisteredUser(RegisteredUser registeredUser) {
         if (registeredUser.getId() != null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "id is not required to create a registered user");
+        }
+
+        Optional<RegisteredUser> optional = registeredUserRepository.findByEmailAddress(registeredUser.getEmailAddress());
+        if (optional.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This email already exists.");
         }
 
         return registeredUserRepository.save(registeredUser);
