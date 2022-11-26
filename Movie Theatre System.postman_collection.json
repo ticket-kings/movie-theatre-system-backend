@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "9eed16cd-dcab-49b1-9f3f-d26315961eed",
+		"_postman_id": "62d51ae9-46e2-4f78-88e2-70756dcfbb6b",
 		"name": "Movie Theatre System",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "24495164"
+		"_exporter_id": "24018936"
 	},
 	"item": [
 		{
@@ -38,7 +38,32 @@
 							"name": "login",
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/user/registered/login?id=1&password=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"registered",
+										"login"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										},
+										{
+											"key": "password",
+											"value": "1"
+										}
+									]
+								}
 							},
 							"response": []
 						}
