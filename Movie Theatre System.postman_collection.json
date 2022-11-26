@@ -40,7 +40,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/api/v1/user/registered/login?id=1&password=1",
+									"raw": "http://localhost:8080/api/v1/user/registered/login?email=test@test.com&password=1",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -55,8 +55,8 @@
 									],
 									"query": [
 										{
-											"key": "id",
-											"value": "1"
+											"key": "email",
+											"value": "test@test.com"
 										},
 										{
 											"key": "password",
@@ -74,7 +74,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"name\": \"Test\",\n    \"emailAddress\": \"test@test.ca\",\n    \"creditId\": null,\n    \"cardId\": null,\n    \"address\": \"124 Test Street\",\n    \"password\": \"1\"\n}",
+									"raw": "{\n    \"id\": null,\n    \"name\": \"Test\",\n    \"emailAddress\": \"test@test.com\",\n    \"creditId\": null,\n    \"cardId\": null,\n    \"card\": {\n        \"id\": null,\n        \"cardNumber\": \"1111222233334444\",\n        \"expiryDate\": \"0123\",\n        \"cvv\": \"999\",\n        \"payments\": []\n    },\n    \"address\": \"124 Test Street\",\n    \"password\": \"1\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
