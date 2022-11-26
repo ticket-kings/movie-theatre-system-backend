@@ -51,4 +51,8 @@ public class Seat {
     public void reserveSeat() {
         this.reserved = true;
     }
+
+    public void cancelSeat() {
+        this.reserved = false;
+    }
 }
