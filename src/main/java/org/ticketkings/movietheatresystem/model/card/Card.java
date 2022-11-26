@@ -1,12 +1,12 @@
 package org.ticketkings.movietheatresystem.model.card;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
+import org.ticketkings.movietheatresystem.model.payment.Payment;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -27,8 +27,11 @@ public class Card {
     @Column(name="cvv")
     private String cvv;
 
-    public Card() {
+    @JsonManagedReference
+    @OneToMany(mappedBy = "card")
+    private List<Payment> payments;
 
+    public Card() {
     }
 
     public Card(Integer id, String cardNumber, String expiryDate, String cvv) {

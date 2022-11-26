@@ -300,6 +300,65 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Payment",
+			"item": [
+				{
+					"name": "AnnualPayment",
+					"item": [
+						{
+							"name": "getAnnualPayments",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/payment/annual",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"payment",
+										"annual"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "TicketPayment",
+					"item": [
+						{
+							"name": "getTicketPayments",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/payment/ticket",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"payment",
+										"ticket"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
 		}
 	]
 }

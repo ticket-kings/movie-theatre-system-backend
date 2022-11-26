@@ -1,22 +1,7 @@
-DROP SCHEMA IF EXISTS movie_theatre_system;
+DROP DATABASE IF EXISTS movie_theatre_system;
 
-CREATE SCHEMA IF NOT EXISTS movie_theatre_system;
+CREATE DATABASE IF NOT EXISTS movie_theatre_system;
 
-CREATE TABLE IF NOT EXISTS movie_theatre_system.payment(
-	id int PRIMARY KEY auto_increment,
-    card_id int NOT NULL,
-    amount FLOAT NOT NULL,
-    payment_type char(1) NOT NULL,
-    payment_date datetime NOT NULL
-);
-
-INSERT INTO movie_theatre_system.payment (card_id, amount, payment_type, payment_date)
-VALUES
-	(1, 20, "A", "2022-11-24 10:00:00"),
-	(1, 10, "T", "2022-11-24 10:30:00"),
-    (2, 10, "T", "2022-11-11 11:11:11"),
-    (3, 10, "T", "2022-11-20 20:00:00");
-    
 CREATE TABLE IF NOT EXISTS movie_theatre_system.card (
 	id int PRIMARY KEY auto_increment,
     card_number varchar(16) NOT NULL,
@@ -29,7 +14,42 @@ VALUES
 	("1234123412341234", "0123", "123"),
     ("1111222233334444", "0123", "999"),
     ("4444333322221111", "0123", "999");
-    
+
+CREATE TABLE IF NOT EXISTS movie_theatre_system.payment(
+	id int PRIMARY KEY auto_increment,
+    card_id int NOT NULL,
+    amount FLOAT NOT NULL,
+    payment_date datetime NOT NULL,
+    CONSTRAINT FOREIGN KEY (card_id) REFERENCES card (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+INSERT INTO movie_theatre_system.payment (card_id, amount, payment_date)
+VALUES
+	(1, 20, "2022-11-24 10:00:00"),
+	(1, 10, "2022-11-24 10:30:00"),
+    (2, 10, "2022-11-11 11:11:11"),
+    (3, 10, "2022-11-20 20:00:00");
+
+CREATE TABLE IF NOT EXISTS movie_theatre_system.annual_payment(
+	payment_id int NOT NULL,
+    next_payment_date DATETIME NOT NULL,
+    CONSTRAINT FOREIGN KEY (payment_id) REFERENCES payment (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+INSERT INTO movie_theatre_system.annual_payment(payment_id, next_payment_date)
+VALUES
+	(1, "2023-11-24 10:00:00");
+
+CREATE TABLE IF NOT EXISTS movie_theatre_system.ticket_payment(
+	payment_id int NOT NULL,
+    CONSTRAINT FOREIGN KEY (payment_id) REFERENCES payment (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+INSERT INTO movie_theatre_system.ticket_payment(payment_id)
+VALUES
+	(2),
+    (3);
+
 CREATE TABLE IF NOT EXISTS movie_theatre_system.credit (
 	id int PRIMARY KEY auto_increment,
     amount FLOAT NOT NULL,
