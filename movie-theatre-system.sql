@@ -53,8 +53,8 @@ CREATE TABLE IF NOT EXISTS movie_theatre_system.user (
 INSERT INTO movie_theatre_system.user (name, email_address, credit_id, card_id) 
 VALUES 
 	("Trevor", "trevor.le1@ucalgary.ca", 1, 1),
-    ("Levi", "levi@gmail.com", null, null),
-    ("Jaime", "jaime@gmail.com", null, null),
+    ("Levi", "levi@gmail.com", null, 2),
+    ("Jaime", "jaime@gmail.com", null, 3),
     ("Shelly", "shelly@gmail.com", null, null);
 
 CREATE TABLE IF NOT EXISTS movie_theatre_system.guest_user (

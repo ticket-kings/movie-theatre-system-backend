@@ -2,6 +2,7 @@ package org.ticketkings.movietheatresystem.model.user;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.ticketkings.movietheatresystem.model.card.Card;
 import org.ticketkings.movietheatresystem.model.credit.Credit;
 
 import javax.persistence.*;
@@ -32,6 +33,10 @@ public abstract class User {
 
     @Column(name="card_id")
     private Integer cardId;
+
+    @OneToOne
+    @JoinColumn(name = "card_id", insertable = false, updatable = false)
+    private Card card;
 
     public User() {
     }
