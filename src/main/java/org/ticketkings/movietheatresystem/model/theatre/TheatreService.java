@@ -1,4 +1,4 @@
-package org.ticketkings.movietheatresystem.model.Theatre;
+package org.ticketkings.movietheatresystem.model.theatre;
 
 import java.util.List;
 

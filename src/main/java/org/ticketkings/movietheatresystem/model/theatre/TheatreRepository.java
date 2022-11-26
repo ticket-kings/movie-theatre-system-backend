@@ -1,6 +1,4 @@
-package org.ticketkings.movietheatresystem.model.Theatre;
-
-import java.util.List;
+package org.ticketkings.movietheatresystem.model.theatre;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
