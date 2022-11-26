@@ -1,10 +1,8 @@
 package org.ticketkings.movietheatresystem.model.showing;
 
-import java.util.List;
-
 import javax.persistence.*;
 
-import org.ticketkings.movietheatresystem.model.Theatre.Theatre;
+import org.ticketkings.movietheatresystem.model.theatre.Theatre;
 import org.ticketkings.movietheatresystem.model.movie.Movie;
 import org.ticketkings.movietheatresystem.model.showtime.Showtime;
 

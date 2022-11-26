@@ -21,12 +21,12 @@ public class RegisteredUserService {
         Optional<RegisteredUser> optional = registeredUserRepository.findById(id);
 
         if(optional.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This registered user id does not exist.");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This registered user id does not exist");
         }
 
         RegisteredUser user = optional.get();
         if(!Objects.equals(user.getPassword(), password)) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Password is incorrect.");
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Password is incorrect");
         }
 
         return user;
@@ -37,11 +37,8 @@ public class RegisteredUserService {
     }
 
     public RegisteredUser createRegisteredUser(RegisteredUser registeredUser) {
-        Optional<RegisteredUser> userById = registeredUserRepository
-                .findById(registeredUser.getUserId());
-
-        if (userById.isPresent()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User already exists");
+        if (registeredUser.getId() != null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "id is not required to create a registered user");
         }
 
         return registeredUserRepository.save(registeredUser);

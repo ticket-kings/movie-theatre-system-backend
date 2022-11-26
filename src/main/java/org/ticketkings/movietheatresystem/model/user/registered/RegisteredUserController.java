@@ -27,7 +27,7 @@ public class RegisteredUserController {
 	}
 
 	@PostMapping
-	public RegisteredUser addRegisteredUser(@RequestBody RegisteredUser registeredUser) {
+	public RegisteredUser createRegisteredUser(@RequestBody RegisteredUser registeredUser) {
 		return registeredUserService.createRegisteredUser(registeredUser);
 	}
 

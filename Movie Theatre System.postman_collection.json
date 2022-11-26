@@ -66,6 +66,37 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "createRegisteredUser",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Test\",\n    \"emailAddress\": \"test@test.ca\",\n    \"creditId\": null,\n    \"cardId\": null,\n    \"address\": \"124 Test Street\",\n    \"password\": \"1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/user/registered",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"registered"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -183,7 +214,10 @@
 					"name": "getTheatres",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				}
@@ -222,7 +256,10 @@
 					"name": "getCredits",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				}

@@ -1,6 +1,5 @@
 package org.ticketkings.movietheatresystem.model.user;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,7 +12,7 @@ import javax.persistence.*;
 @Table(name="user")
 public abstract class User {
     @Id
-    @JsonManagedReference
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id")
     private Integer id;
 
