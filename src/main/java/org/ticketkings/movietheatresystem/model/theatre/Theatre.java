@@ -22,11 +22,6 @@ public class Theatre {
     @Column(name = "name")
     private String name;
 
-    @JsonBackReference
-    @OneToOne
-    @JoinColumn(name = "showing", insertable = false, updatable = false)
-    private Showing showing;
-
     public Theatre(String name, Integer id) {
         this.name = name;
         this.id = id;

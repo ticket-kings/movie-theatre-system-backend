@@ -2,6 +2,7 @@ package org.ticketkings.movietheatresystem.model.user;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.ticketkings.movietheatresystem.model.credit.Credit;
 
 import javax.persistence.*;
 
@@ -24,6 +25,10 @@ public abstract class User {
 
     @Column(name="credit_id")
     private Integer creditId;
+
+    @OneToOne
+    @JoinColumn(name = "credit_id", insertable = false, updatable = false)
+    private Credit credit;
 
     @Column(name="card_id")
     private Integer cardId;

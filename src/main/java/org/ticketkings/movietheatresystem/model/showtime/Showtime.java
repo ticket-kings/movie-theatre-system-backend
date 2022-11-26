@@ -29,11 +29,6 @@ public class Showtime {
     @OneToMany(mappedBy = "showtime")
     private List<Seat> seats;
 
-    @JsonBackReference
-    @OneToOne
-    @JoinColumn(name = "showing", insertable = false, updatable = false)
-    private Showing showing;
-
     public Showtime(Integer id, Date time) {
         this.id = id;
         this.time = time;

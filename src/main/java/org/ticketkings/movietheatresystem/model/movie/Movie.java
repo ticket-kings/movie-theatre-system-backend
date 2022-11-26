@@ -34,11 +34,6 @@ public class Movie {
     @Column(name = "is_released")
     private Boolean isReleased;
 
-    @JsonBackReference
-    @OneToOne
-    @JoinColumn(name = "showing", insertable = false, updatable = false)
-    private Showing showing;
-
     public Movie(Integer id, String name, String imageUrl, String description, Integer duration, Boolean isReleased) {
         this.id = id;
         this.name = name;
