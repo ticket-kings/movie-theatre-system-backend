@@ -2,10 +2,6 @@ package org.ticketkings.movietheatresystem.model.movie;
 
 import javax.persistence.*;
 
-import org.ticketkings.movietheatresystem.model.showing.Showing;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import lombok.Getter;
 import lombok.Setter;
 

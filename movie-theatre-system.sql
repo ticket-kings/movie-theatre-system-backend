@@ -48,7 +48,8 @@ CREATE TABLE IF NOT EXISTS movie_theatre_system.ticket_payment(
 INSERT INTO movie_theatre_system.ticket_payment(payment_id)
 VALUES
 	(2),
-    (3);
+    (3),
+    (4);
 
 CREATE TABLE IF NOT EXISTS movie_theatre_system.credit (
 	id int PRIMARY KEY auto_increment,
@@ -171,7 +172,7 @@ VALUES
 	(10, "A1",  true,  true, 1),
     (10, "A2",  true, false, 1),
     (10, "A3", false,  true, 1),
-    (10, "A4", false, false, 1),
+    (10, "A4", false,  true, 1),
     (10, "A5", false, false, 1),
     (10, "B1", false, false, 1),
     (10, "B2", false, false, 1),
@@ -240,5 +241,6 @@ CREATE TABLE IF NOT EXISTS movie_theatre_system.ticket(
 INSERT INTO movie_theatre_system.ticket (seat_id, payment_id)
 VALUES
 	(1, 2),
-    (3, 3);
+    (3, 3),
+    (4, 4);
 
