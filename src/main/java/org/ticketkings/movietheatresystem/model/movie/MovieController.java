@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.ticketkings.movietheatresystem.model.showing.Showing;
 import org.ticketkings.movietheatresystem.model.showing.ShowingService;
 import org.ticketkings.movietheatresystem.model.showtime.Showtime;
@@ -33,6 +30,11 @@ public class MovieController {
     @GetMapping("{movieId}")
     public Movie getMovie(@PathVariable Integer movieId) {
         return movieService.getMovie(movieId);
+    }
+
+    @GetMapping("/search")
+    public List<Movie> searchMovies(@RequestParam String name) {
+        return movieService.searchMovies(name);
     }
 
     @GetMapping("{movieId}/showtimes")

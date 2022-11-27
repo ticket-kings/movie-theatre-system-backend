@@ -29,4 +29,8 @@ public class MovieService {
 
         return optional.get();
     }
+
+    public List<Movie> searchMovies(String name) {
+        return movieRepository.searchMovies(name);
+    }
 }
