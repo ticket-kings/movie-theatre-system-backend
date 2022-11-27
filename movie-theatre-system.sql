@@ -138,6 +138,7 @@ VALUES
     ('2022-12-02 20:00:00');
 
 CREATE TABLE IF NOT EXISTS movie_theatre_system.showing (
+	id int PRIMARY KEY auto_increment,
 	movie_id int NOT NULL,
     theatre_id int NOT NULL,
     showtime_id int NOT NULL,

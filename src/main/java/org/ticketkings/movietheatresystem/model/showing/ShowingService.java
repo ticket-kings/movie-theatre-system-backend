@@ -19,4 +19,8 @@ public class ShowingService {
         return showingRepository.findAll();
     }
 
+    public List<Showing> getShowingsByMovieId(Integer movieId) {
+        return showingRepository.findAllByMovieId(movieId);
+    }
+
 }

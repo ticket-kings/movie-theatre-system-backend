@@ -18,14 +18,17 @@ import lombok.Setter;
 public class Showing {
 
     @Id
+    @Column(name = "id")
+    private Integer id;
+
     @Column(name = "movie_id")
-    private int movieId;
+    private Integer movieId;
 
     @Column(name = "theatre_id")
-    private int theatreId;
+    private Integer theatreId;
 
     @Column(name = "showtime_id")
-    private int showtimeId;
+    private Integer showtimeId;
 
     @JsonManagedReference
     @OneToOne
@@ -42,7 +45,7 @@ public class Showing {
     @JoinColumn(name = "showtime_id", insertable = false, updatable = false)
     private Showtime showtime;
 
-    public Showing(int movieId, int theatreId, int showtimeId) {
+    public Showing(Integer movieId, Integer theatreId, Integer showtimeId) {
         this.movieId = movieId;
         this.theatreId = theatreId;
         this.showtimeId = showtimeId;

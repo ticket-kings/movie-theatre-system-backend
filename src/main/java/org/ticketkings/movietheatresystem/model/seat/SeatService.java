@@ -24,7 +24,7 @@ public class SeatService {
         Optional<Seat> optional = seatRepository.findById(seatId);
 
         if (optional.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Seat " + seatId + " does not exist");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Seat with ID: " + seatId + " does not exist");
         }
 
         Seat seat = optional.get();
