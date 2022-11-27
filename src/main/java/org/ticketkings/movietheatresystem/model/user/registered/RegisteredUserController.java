@@ -24,7 +24,7 @@ public class RegisteredUserController {
 	}
 
 	@GetMapping("/login")
-	public RegisteredUser getRegisteredUser(@RequestParam String email, @RequestParam String password) {
+	public RegisteredUser login(@RequestParam String email, @RequestParam String password) {
 		return registeredUserService.login(email, password);
 	}
 
@@ -35,6 +35,8 @@ public class RegisteredUserController {
 
 	@PostMapping
 	public RegisteredUser createRegisteredUser(@RequestBody RegisteredUser registeredUser) {
+		registeredUserService.throwErrorIfExists(registeredUser.getEmailAddress());
+
 		Card card = registeredUser.getCard();
 		cardService.createCard(card);
 

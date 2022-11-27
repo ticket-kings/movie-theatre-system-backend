@@ -41,11 +41,14 @@ public class RegisteredUserService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "id is not required to create a registered user");
         }
 
-        Optional<RegisteredUser> optional = registeredUserRepository.findByEmailAddress(registeredUser.getEmailAddress());
-        if (optional.isPresent()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This email already exists.");
-        }
-
         return registeredUserRepository.save(registeredUser);
+    }
+
+    public void throwErrorIfExists(String emailAddress) {
+        Optional<RegisteredUser> optional = registeredUserRepository.findByEmailAddress(emailAddress);
+
+        if (optional.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email " + emailAddress + " has already been taken");
+        }
     }
 }
