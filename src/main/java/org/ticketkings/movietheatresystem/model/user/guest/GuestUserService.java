@@ -21,11 +21,12 @@ public class GuestUserService {
     }
 
     public GuestUser createGuestUser(GuestUser guestUser) {
-        Optional<GuestUser> userById = guestUserRepository
-                .findById(guestUser.getUserId());
+        if (guestUser.getUserId() != null) {
+            Optional<GuestUser> userById = guestUserRepository.findById(guestUser.getId());
 
-        if (userById.isPresent()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User already exists");
+            if (userById.isPresent()) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "GuestUser with ID: " + guestUser.getId() + "already exists");
+            }
         }
 
         return guestUserRepository.save(guestUser);
