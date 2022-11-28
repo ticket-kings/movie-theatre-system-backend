@@ -539,7 +539,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": null,\n    \"paymentId\": null,\n    \"seatId\": 5,\n    \"payment\": {\n        \"id\": null,\n        \"amount\": 10.0,\n        \"paymentDate\": null,\n        \"cardId\": 4\n    },\n    \"seat\": null\n}",
+							"raw": "{\n    \"id\": null,\n    \"paymentId\": null,\n    \"seatId\": 5,\n    \"payment\": {\n        \"id\": null,\n        \"amount\": null,\n        \"paymentDate\": null,\n        \"cardId\": 4\n    },\n    \"seat\": null\n}",
 							"options": {
 								"raw": {
 									"language": "json"
