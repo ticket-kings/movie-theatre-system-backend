@@ -131,7 +131,7 @@ VALUES
     (3, '2022-12-01 20:00:00'),
     (4, '2022-12-02 20:00:00'),
     (5, '2022-12-01 20:00:00'),
-    (6, '2022-12-02 20:00:00');
+    (6, '2022-11-30 20:00:00');
 
 CREATE TABLE IF NOT EXISTS movie_theatre_system.showing (
 	id int PRIMARY KEY auto_increment,
@@ -229,7 +229,7 @@ CREATE TABLE IF NOT EXISTS movie_theatre_system.ticket(
 	id int PRIMARY KEY auto_increment,
     seat_id int NOT NULL,
     payment_id int NOT NULL,
-    credit_id int NOT NULL,
+    credit_id int,
     CONSTRAINT FOREIGN KEY (seat_id) REFERENCES seat (id) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT FOREIGN KEY (payment_id) REFERENCES ticket_payment (payment_id) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT FOREIGN KEY (credit_id) REFERENCES credit (id) ON DELETE CASCADE ON UPDATE CASCADE

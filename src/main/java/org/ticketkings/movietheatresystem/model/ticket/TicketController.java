@@ -7,6 +7,8 @@ import org.ticketkings.movietheatresystem.model.payment.ticket.TicketPayment;
 import org.ticketkings.movietheatresystem.model.payment.ticket.TicketPaymentService;
 import org.ticketkings.movietheatresystem.model.seat.Seat;
 import org.ticketkings.movietheatresystem.model.seat.SeatService;
+import org.ticketkings.movietheatresystem.model.showtime.Showtime;
+import org.ticketkings.movietheatresystem.model.showtime.ShowtimeService;
 import org.ticketkings.movietheatresystem.model.user.User;
 import org.ticketkings.movietheatresystem.model.user.UserService;
 
@@ -21,19 +23,22 @@ public class TicketController {
     private final TicketPaymentService ticketPaymentService;
     private final UserService userService;
     private final CreditService creditService;
+    private final ShowtimeService showtimeService;
 
     public TicketController(
             TicketService ticketService,
             SeatService seatService,
             TicketPaymentService ticketPaymentService,
             UserService userService,
-            CreditService creditService
+            CreditService creditService,
+            ShowtimeService showtimeService
     ) {
         this.ticketService = ticketService;
         this.seatService = seatService;
         this.ticketPaymentService = ticketPaymentService;
         this.userService = userService;
         this.creditService = creditService;
+        this.showtimeService = showtimeService;
     }
 
     @GetMapping
@@ -42,12 +47,17 @@ public class TicketController {
     }
 
     @DeleteMapping("/{ticketId}")
-    public void cancelTicket(@PathVariable Integer ticketId) {
+    public Credit cancelTicket(@PathVariable Integer ticketId) {
         Ticket ticket = ticketService.getTicket(ticketId);
 
-        seatService.cancelSeat(ticket.getSeatId());
+        Seat seat = seatService.cancelSeat(ticket.getSeatId());
 
         ticketService.deleteTicket(ticket);
+
+        Showtime showtime = showtimeService.getShowtime(ticket.getSeat().getShowtimeId());
+        User user = userService.getUserByCardId(ticket.getPayment().getCardId());
+
+        return creditService.createCredit(user, showtime, seat);
     }
 
     @PostMapping
@@ -61,8 +71,8 @@ public class TicketController {
         if (ticket.getCreditId() != null) {
             Credit credit = creditService.getCredit(ticket.getCreditId());
             price = credit.apply(price);
-            creditService.saveCredit(credit);
-            ticket.setCredit(credit);
+            credit = creditService.saveCredit(credit);
+            ticket.setCreditId(credit.getId());
         }
 
         ticket.getPayment().setAmount(price);

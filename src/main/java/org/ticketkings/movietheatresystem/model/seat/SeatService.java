@@ -32,10 +32,10 @@ public class SeatService {
         return optional.get();
     }
 
-    public void cancelSeat(Integer seatId) {
+    public Seat cancelSeat(Integer seatId) {
         Seat seat = getSeat(seatId);
         seat.cancelSeat();
-        seatRepository.save(seat);
+        return seatRepository.save(seat);
     }
 
     public Seat reserveSeat(User user, Integer seatId) {
