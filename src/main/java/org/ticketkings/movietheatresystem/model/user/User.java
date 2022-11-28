@@ -24,13 +24,6 @@ public abstract class User {
     @Column(name="email_address")
     private String emailAddress;
 
-    @Column(name="credit_id")
-    private Integer creditId;
-
-    @OneToOne
-    @JoinColumn(name = "credit_id", insertable = false, updatable = false)
-    private Credit credit;
-
     @Column(name="card_id")
     private Integer cardId;
 
@@ -41,11 +34,10 @@ public abstract class User {
     public User() {
     }
 
-    public User(Integer id, String name, String emailAddress, Integer creditId, Integer cardId) {
+    public User(Integer id, String name, String emailAddress, Integer cardId) {
         this.id = id;
         this.name = name;
         this.emailAddress = emailAddress;
-        this.creditId = creditId;
         this.cardId = cardId;
     }
 

@@ -1,6 +1,8 @@
 package org.ticketkings.movietheatresystem.model.ticket;
 
 import org.springframework.web.bind.annotation.*;
+import org.ticketkings.movietheatresystem.model.credit.Credit;
+import org.ticketkings.movietheatresystem.model.credit.CreditService;
 import org.ticketkings.movietheatresystem.model.payment.ticket.TicketPayment;
 import org.ticketkings.movietheatresystem.model.payment.ticket.TicketPaymentService;
 import org.ticketkings.movietheatresystem.model.seat.Seat;
@@ -18,18 +20,20 @@ public class TicketController {
     private final SeatService seatService;
     private final TicketPaymentService ticketPaymentService;
     private final UserService userService;
-
+    private final CreditService creditService;
 
     public TicketController(
             TicketService ticketService,
             SeatService seatService,
             TicketPaymentService ticketPaymentService,
-            UserService userService
+            UserService userService,
+            CreditService creditService
     ) {
         this.ticketService = ticketService;
         this.seatService = seatService;
         this.ticketPaymentService = ticketPaymentService;
         this.userService = userService;
+        this.creditService = creditService;
     }
 
     @GetMapping
@@ -52,6 +56,16 @@ public class TicketController {
         Seat seat = seatService.reserveSeat(user, ticket.getSeatId());
         ticket.setSeat(seat);
 
+        Float price = seat.getPrice();
+
+        if (ticket.getCreditId() != null) {
+            Credit credit = creditService.getCredit(ticket.getCreditId());
+            price = credit.apply(price);
+            creditService.saveCredit(credit);
+            ticket.setCredit(credit);
+        }
+
+        ticket.getPayment().setAmount(price);
         TicketPayment payment = ticketPaymentService.createTicketPayment(ticket.getPayment());
         ticket.setPaymentId(payment.getId());
         ticket.setPayment(payment);

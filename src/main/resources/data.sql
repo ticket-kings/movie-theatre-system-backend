@@ -62,18 +62,16 @@ CREATE TABLE IF NOT EXISTS movie_theatre_system.user (
 	id int PRIMARY KEY auto_increment,
     name varchar(30) NOT NULL,
     email_address varchar(50) NOT NULL,
-    credit_id int,
     card_id int,
-    CONSTRAINT FOREIGN KEY (credit_id) REFERENCES credit (id) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT FOREIGN KEY (card_id) REFERENCES card (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-INSERT INTO movie_theatre_system.user (id, name, email_address, credit_id, card_id)
+INSERT INTO movie_theatre_system.user (id, name, email_address, card_id)
 VALUES 
-	(1, "Trevor", "trevor.le1@ucalgary.ca", 1, 1),
-    (2, "Levi", "levi@gmail.com", null, 2),
-    (3, "Jaime", "jaime@gmail.com", null, 3),
-    (4, "Shelly", "shelly@gmail.com", null, 4);
+	(1, "Trevor", "trevor.le1@ucalgary.ca", 1),
+    (2, "Levi", "levi@gmail.com", 2),
+    (3, "Jaime", "jaime@gmail.com", 3),
+    (4, "Shelly", "shelly@gmail.com", 4);
 
 CREATE TABLE IF NOT EXISTS movie_theatre_system.guest_user (
 	user_id int,
@@ -231,13 +229,15 @@ CREATE TABLE IF NOT EXISTS movie_theatre_system.ticket(
 	id int PRIMARY KEY auto_increment,
     seat_id int NOT NULL,
     payment_id int NOT NULL,
+    credit_id int NOT NULL,
     CONSTRAINT FOREIGN KEY (seat_id) REFERENCES seat (id) ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT FOREIGN KEY (payment_id) REFERENCES ticket_payment (payment_id) ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT FOREIGN KEY (payment_id) REFERENCES ticket_payment (payment_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT FOREIGN KEY (credit_id) REFERENCES credit (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-INSERT INTO movie_theatre_system.ticket (id, seat_id, payment_id)
+INSERT INTO movie_theatre_system.ticket (id, seat_id, payment_id, credit_id)
 VALUES
-	(1, 1, 2),
-    (2, 3, 3),
-    (3, 4, 4);
+	(1, 1, 2, null),
+    (2, 3, 3, null),
+    (3, 4, 4, null);
 
