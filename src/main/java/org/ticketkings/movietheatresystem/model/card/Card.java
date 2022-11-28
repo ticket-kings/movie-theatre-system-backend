@@ -28,7 +28,7 @@ public class Card {
     @Column(name="cvv")
     private String cvv;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "card-payment")
     @OneToMany(mappedBy = "card")
     private List<Payment> payments;
 

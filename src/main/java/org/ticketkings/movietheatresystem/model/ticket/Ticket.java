@@ -1,5 +1,6 @@
 package org.ticketkings.movietheatresystem.model.ticket;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 import org.ticketkings.movietheatresystem.model.payment.Payment;
@@ -15,6 +16,7 @@ import javax.persistence.*;
 public class Ticket {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id")
     private Integer id;
 
@@ -29,6 +31,7 @@ public class Ticket {
     private TicketPayment payment;
 
     @OneToOne
+    @JsonManagedReference(value = "ticket-seat")
     @JoinColumn(name = "seat_id", insertable = false, updatable = false)
     private Seat seat;
 

@@ -29,4 +29,14 @@ public class UserService {
 
         return optional.get();
     }
+
+    public User getUserByCardId(Integer cardId) {
+        Optional<User> optional = userRepository.findByCardId(cardId);
+
+        if (optional.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User with Card ID: " + cardId + " does not exist");
+        }
+
+        return optional.get();
+    }
 }

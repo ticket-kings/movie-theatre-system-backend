@@ -33,4 +33,16 @@ public class TicketService {
     public void deleteTicket(Ticket ticket) {
         ticketRepository.delete(ticket);
     }
+
+    public Ticket createTicket(Ticket ticket) {
+        if (ticket.getId() != null) {
+            Optional<Ticket> optional = ticketRepository.findById(ticket.getId());
+
+            if (optional.isPresent()) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Ticket with ID: " + ticket.getId() + " already exists");
+            }
+        }
+
+        return ticketRepository.save(ticket);
+    }
 }

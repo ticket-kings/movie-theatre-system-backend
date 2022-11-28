@@ -9,7 +9,8 @@ INSERT INTO movie_theatre_system.card (id, card_number, expiry_date, cvv)
 VALUES
 	(1, "1234123412341234", "0123", "123"),
     (2, "1111222233334444", "0123", "999"),
-    (3, "4444333322221111", "0123", "999");
+    (3, "4444333322221111", "0123", "999"),
+    (4, "5555666677778888", "0123", "321");
 
 CREATE TABLE IF NOT EXISTS movie_theatre_system.payment(
 	id int PRIMARY KEY auto_increment,
@@ -72,7 +73,7 @@ VALUES
 	(1, "Trevor", "trevor.le1@ucalgary.ca", 1, 1),
     (2, "Levi", "levi@gmail.com", null, 2),
     (3, "Jaime", "jaime@gmail.com", null, 3),
-    (4, "Shelly", "shelly@gmail.com", null, null);
+    (4, "Shelly", "shelly@gmail.com", null, 4);
 
 CREATE TABLE IF NOT EXISTS movie_theatre_system.guest_user (
 	user_id int,

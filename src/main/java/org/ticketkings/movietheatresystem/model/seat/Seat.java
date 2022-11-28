@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 import org.ticketkings.movietheatresystem.model.showtime.Showtime;
+import org.ticketkings.movietheatresystem.model.ticket.Ticket;
 
 @Entity
 @Getter
@@ -32,10 +33,14 @@ public class Seat {
     @Column(name="showtime_id")
     private Integer showtimeId;
 
-    @JsonBackReference
+    @JsonBackReference(value = "showtime-seat")
     @ManyToOne
     @JoinColumn(name="showtime_id", insertable = false, updatable = false)
     private Showtime showtime;
+
+    @OneToOne(mappedBy = "seat")
+    @JsonBackReference(value = "ticket-seat")
+    private Ticket ticket;
 
     public Seat(Integer id, String seatNumber, Float price, Boolean premium, Boolean reserved) {
         this.id = id;

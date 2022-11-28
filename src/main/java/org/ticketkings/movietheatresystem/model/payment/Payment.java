@@ -29,7 +29,7 @@ public class Payment {
     @Column(name="card_id")
     private Integer cardId;
 
-    @JsonBackReference
+    @JsonBackReference(value = "card-payment")
     @ManyToOne
     @JoinColumn(name = "card_id", insertable = false, updatable = false)
     private Card card;
