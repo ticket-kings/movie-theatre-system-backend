@@ -431,6 +431,28 @@
 					"response": []
 				},
 				{
+					"name": "getCredit",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/credit/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"credit",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "checkCredit",
 					"request": {
 						"method": "GET",
@@ -594,7 +616,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": null,\n    \"paymentId\": null,\n    \"seatId\": 5,\n    \"payment\": {\n        \"id\": null,\n        \"amount\": null,\n        \"paymentDate\": null,\n        \"cardId\": 4\n    },\n    \"seat\": null\n}",
+							"raw": "{\n    \"id\": null,\n    \"paymentId\": null,\n    \"seatId\": 2,\n    \"creditId\": 1,\n    \"payment\": {\n        \"id\": null,\n        \"amount\": null,\n        \"paymentDate\": null,\n        \"cardId\": 1\n    },\n    \"seat\": null\n}",
 							"options": {
 								"raw": {
 									"language": "json"

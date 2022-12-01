@@ -23,13 +23,7 @@ public class SeatService {
     }
 
     public Seat getSeat(Integer id) {
-        Optional<Seat> optional = seatRepository.findById(id);
-
-        if (optional.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Seat with ID: " + id + " does not exist");
-        }
-
-        return optional.get();
+        return seatRepository.getReferenceById(id);
     }
 
     public Seat cancelSeat(Integer seatId) {
@@ -38,18 +32,30 @@ public class SeatService {
         return seatRepository.save(seat);
     }
 
-    public Seat reserveSeat(User user, Integer seatId) {
+    public Seat reserveSeat(Integer seatId) {
         Seat seat = getSeat(seatId);
 
         if (seat.getReserved()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Seat with ID: " + seatId + " is already reserved");
         }
 
-        if (seat.getPremium() && user instanceof GuestUser) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Seat with ID: " + seatId + " is premium for RegisteredUsers");
-        }
-
         seat.reserveSeat();
         return seatRepository.save(seat);
+    }
+
+    public void throwIfNotExists(Integer id) {
+        Optional<Seat> optional = seatRepository.findById(id);
+
+        if (optional.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Seat with ID: " + id + " does not exist");
+        }
+    }
+
+    public void throwIfReserved(Integer id) {
+        Seat seat = getSeat(id);
+
+        if (seat.getReserved()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Seat with ID: " + id + " is already reserved");
+        }
     }
 }

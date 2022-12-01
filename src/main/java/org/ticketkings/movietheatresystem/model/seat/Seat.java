@@ -24,9 +24,6 @@ public class Seat {
     @Column(name="price")
     private Float price;
 
-    @Column(name="premium")
-    private Boolean premium;
-
     @Column(name="reserved")
     private Boolean reserved;
 
@@ -42,11 +39,10 @@ public class Seat {
     @JsonBackReference(value = "ticket-seat")
     private Ticket ticket;
 
-    public Seat(Integer id, String seatNumber, Float price, Boolean premium, Boolean reserved) {
+    public Seat(Integer id, String seatNumber, Float price, Boolean reserved) {
         this.id = id;
         this.price = price;
         this.seatNumber = seatNumber;
-        this.premium = premium;
         this.reserved = reserved;
     }
 

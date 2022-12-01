@@ -54,7 +54,7 @@ public class TicketController {
 
         ticketService.deleteTicket(ticket);
 
-        Showtime showtime = showtimeService.getShowtime(ticket.getSeat().getShowtimeId());
+        Showtime showtime = showtimeService.decrementSeats(ticket.getSeat().getShowtimeId());
         User user = userService.getUserByCardId(ticket.getPayment().getCardId());
 
         return creditService.createCredit(user, showtime, seat);
@@ -62,8 +62,9 @@ public class TicketController {
 
     @PostMapping
     public Ticket createTicket(@RequestBody Ticket ticket) {
-        User user = userService.getUserByCardId(ticket.getPayment().getCardId());
-        Seat seat = seatService.reserveSeat(user, ticket.getSeatId());
+        checkCreateTicketErrors(ticket);
+
+        Seat seat = reserveSeat(ticket.getSeatId());
         ticket.setSeat(seat);
 
         Float price = seat.getPrice();
@@ -81,5 +82,23 @@ public class TicketController {
         ticket.setPayment(payment);
 
         return ticketService.createTicket(ticket);
+    }
+
+    private void checkCreateTicketErrors(Ticket ticket) {
+        userService.getUserByCardId(ticket.getPayment().getCardId());
+        seatService.throwIfNotExists(ticket.getSeatId());
+        seatService.throwIfReserved(ticket.getSeatId());
+        Seat seat = seatService.getSeat(ticket.getSeatId());
+        showtimeService.throwIfMaxCapacity(seat.getShowtimeId());
+        if(ticket.getCreditId() != null)
+            creditService.throwIfNotExists(ticket.getCreditId());
+    }
+
+    private Seat reserveSeat(Integer seatId) {
+        Seat seat = seatService.getSeat(seatId);
+        if (!seat.getReserved())
+            showtimeService.incrementSeats(seat.getShowtimeId());
+
+        return seatService.reserveSeat(seatId);
     }
 }

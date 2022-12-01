@@ -24,7 +24,7 @@ public class TicketService {
         Optional<Ticket> optional = ticketRepository.findById(ticketId);
 
         if (optional.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Ticket with ID: " + ticketId + "does not exist");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Ticket with ID: " + ticketId + " does not exist");
         }
 
         return optional.get();

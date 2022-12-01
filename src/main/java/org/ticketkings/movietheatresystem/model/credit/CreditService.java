@@ -78,4 +78,12 @@ public class CreditService {
         getCredit(credit.getId()); // check if credit exists
         creditRepository.delete(credit);
     }
+
+    public void throwIfNotExists(Integer id) {
+        Optional<Credit> optional = creditRepository.findById(id);
+
+        if (optional.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Credit with ID: " + id + " is invalid");
+        }
+    }
 }

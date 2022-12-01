@@ -8,6 +8,8 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 import org.ticketkings.movietheatresystem.model.seat.Seat;
 
 @Entity
@@ -23,15 +25,34 @@ public class Showtime {
     @Column(name = "time")
     private Date time;
 
+    @Column(name = "reserved_seats")
+    private Integer reservedSeats;
+
+    @Column(name = "capacity")
+    private Integer capacity;
+
     @JsonManagedReference(value = "showtime-seat")
     @OneToMany(mappedBy = "showtime")
     private List<Seat> seats;
 
-    public Showtime(Integer id, Date time) {
+    public Showtime(Integer id, Date time, Integer reservedSeats, Integer capacity) {
         this.id = id;
         this.time = time;
+        this.reservedSeats = reservedSeats;
+        this.capacity = capacity;
     }
 
     public Showtime() {
+    }
+
+    public void incrementSeats() {
+        if (reservedSeats < capacity)
+            reservedSeats++;
+    }
+
+    public void decrementSeats() {
+        if (reservedSeats <= 0) return;
+
+        reservedSeats--;
     }
 }
