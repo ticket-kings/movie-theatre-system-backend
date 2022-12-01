@@ -20,11 +20,11 @@ public class MovieService {
         return movieRepository.findAll();
     }
 
-    public Movie getMovie(Integer movieId) {
-        Optional<Movie> optional = movieRepository.findById(movieId);
+    public Movie getMovie(Integer id) {
+        Optional<Movie> optional = movieRepository.findById(id);
 
         if (optional.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Movie with ID: " + movieId + " does not exist");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Movie with ID: " + id + " does not exist");
         }
 
         return optional.get();
@@ -33,4 +33,17 @@ public class MovieService {
     public List<Movie> searchMovies(String name) {
         return movieRepository.searchMovies(name);
     }
+
+    public Movie releaseMovie(Integer id) {
+        Optional<Movie> optional = movieRepository.findById(id);
+
+        if (optional.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Movie with ID: " + id + " does not exist");
+        }
+
+        Movie movie = optional.get();
+        movie.setIsReleased(true);
+        return movieRepository.save(movie);
+    }
+
 }

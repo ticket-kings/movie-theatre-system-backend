@@ -351,6 +351,51 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "getReleasedMovies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/movie/released",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"movie",
+								"released"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "releaseMovie",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/movie/2/release",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"movie",
+								"2",
+								"release"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},

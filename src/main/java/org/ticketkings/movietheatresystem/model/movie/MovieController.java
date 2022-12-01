@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.ticketkings.movietheatresystem.model.showing.Showing;
 import org.ticketkings.movietheatresystem.model.showing.ShowingService;
 import org.ticketkings.movietheatresystem.model.showtime.Showtime;
+import org.ticketkings.movietheatresystem.model.showtime.ShowtimeService;
 
 @RestController
 @RequestMapping(path = "api/v1/movie")
@@ -15,11 +16,17 @@ public class MovieController {
 
     private final MovieService movieService;
     private final ShowingService showingService;
+    private final ShowtimeService showtimeService;
 
     @Autowired
-    public MovieController(MovieService movieService, ShowingService showingService) {
+    public MovieController(
+            MovieService movieService,
+            ShowingService showingService,
+            ShowtimeService showtimeService
+    ) {
         this.movieService = movieService;
         this.showingService = showingService;
+        this.showtimeService = showtimeService;
     }
 
     @GetMapping
@@ -32,7 +39,7 @@ public class MovieController {
         return movieService.getMovie(movieId);
     }
 
-    @GetMapping("/search")
+    @GetMapping("search")
     public List<Movie> searchMovies(@RequestParam String name) {
         return movieService.searchMovies(name);
     }
@@ -47,5 +54,22 @@ public class MovieController {
         }
 
         return showtimes;
+    }
+
+    @PatchMapping("{movieId}/release")
+    public Movie releaseMovie(@PathVariable Integer movieId) {
+        List<Showtime> movieShowtimes = getMovieShowtimes(movieId);
+        for (Showtime showtime: movieShowtimes) {
+            showtime.setCapacity(10);
+            showtimeService.updateShowtime(showtime);
+        }
+
+        return movieService.releaseMovie(movieId);
+    }
+
+    @GetMapping("released")
+    public List<Movie> getReleasedMovies() {
+        List<Movie> movies = getMovies();
+        return movies.stream().filter(Movie::getIsReleased).toList();
     }
 }

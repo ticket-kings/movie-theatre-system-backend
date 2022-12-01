@@ -32,6 +32,10 @@ public class ShowtimeService {
         return showtimeRepository.save(showtime);
     }
 
+    public Showtime updateShowtime(Showtime showtime) {
+        return showtimeRepository.save(showtime);
+    }
+
     private Showtime findByIdOrError(Integer id) {
         Optional<Showtime> optional = showtimeRepository.findById(id);
 
