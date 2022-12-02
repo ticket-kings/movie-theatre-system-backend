@@ -2,7 +2,6 @@ package org.ticketkings.movietheatresystem.model.credit;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 import javax.persistence.*;
 

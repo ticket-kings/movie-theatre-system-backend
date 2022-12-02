@@ -8,8 +8,6 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
 import org.ticketkings.movietheatresystem.model.seat.Seat;
 
 @Entity
