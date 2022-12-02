@@ -29,7 +29,6 @@ public class Showtime {
     @Column(name = "capacity")
     private Integer capacity;
 
-    @JsonManagedReference(value = "showtime-seat")
     @OneToMany(mappedBy = "showtime")
     private List<Seat> seats;
 

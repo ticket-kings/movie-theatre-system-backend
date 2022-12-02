@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.ticketkings.movietheatresystem.model.credit.Credit;
 import org.ticketkings.movietheatresystem.model.payment.ticket.TicketPayment;
 import org.ticketkings.movietheatresystem.model.seat.Seat;
+import org.ticketkings.movietheatresystem.model.showing.Showing;
 
 import javax.persistence.*;
 
@@ -26,6 +27,9 @@ public class Ticket {
     @Column(name="seat_id")
     private Integer seatId;
 
+    @Column(name="showing_id")
+    private Integer showingId;
+
     @Column(name="credit_id")
     private Integer creditId;
 
@@ -34,12 +38,14 @@ public class Ticket {
     private TicketPayment payment;
 
     @OneToOne
-    @JsonManagedReference(value = "ticket-seat")
     @JoinColumn(name = "seat_id", insertable = false, updatable = false)
     private Seat seat;
 
     @OneToOne
-    @JsonManagedReference(value = "ticket-credit")
+    @JoinColumn(name = "showing_id", insertable = false, updatable = false)
+    private Showing showing;
+
+    @OneToOne
     @JoinColumn(name = "credit_id", insertable = false, updatable = false)
     private Credit credit;
 

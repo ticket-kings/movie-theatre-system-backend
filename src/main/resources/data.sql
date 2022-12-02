@@ -229,16 +229,18 @@ VALUES
 CREATE TABLE IF NOT EXISTS movie_theatre_system.ticket(
 	id int PRIMARY KEY auto_increment,
     seat_id int NOT NULL,
+    showing_id int NOT NULL,
     payment_id int NOT NULL,
     credit_id int,
     CONSTRAINT FOREIGN KEY (seat_id) REFERENCES seat (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT FOREIGN KEY (showing_id) REFERENCES showing (id) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT FOREIGN KEY (payment_id) REFERENCES ticket_payment (payment_id) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT FOREIGN KEY (credit_id) REFERENCES credit (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-INSERT INTO movie_theatre_system.ticket (id, seat_id, payment_id, credit_id)
+INSERT INTO movie_theatre_system.ticket (id, seat_id, showing_id, payment_id, credit_id)
 VALUES
-	(1, 1, 2, null),
-    (2, 3, 3, null),
-    (3, 4, 4, null);
+	(1, 1, 1, 2, null),
+    (2, 3, 1, 3, null),
+    (3, 4, 1, 4, null);
 

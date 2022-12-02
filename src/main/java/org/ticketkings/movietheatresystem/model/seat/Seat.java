@@ -30,14 +30,10 @@ public class Seat {
     @Column(name="showtime_id")
     private Integer showtimeId;
 
-    @JsonBackReference(value = "showtime-seat")
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name="showtime_id", insertable = false, updatable = false)
     private Showtime showtime;
-
-    @OneToOne(mappedBy = "seat")
-    @JsonBackReference(value = "ticket-seat")
-    private Ticket ticket;
 
     public Seat(Integer id, String seatNumber, Float price, Boolean reserved) {
         this.id = id;

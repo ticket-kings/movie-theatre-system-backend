@@ -30,17 +30,14 @@ public class Showing {
     @Column(name = "showtime_id")
     private Integer showtimeId;
 
-    @JsonManagedReference
     @OneToOne
     @JoinColumn(name = "movie_id", insertable = false, updatable = false)
     private Movie movie;
 
-    @JsonManagedReference
     @OneToOne
     @JoinColumn(name = "theatre_id", insertable = false, updatable = false)
     private Theatre theatre;
 
-    @JsonManagedReference
     @OneToOne
     @JoinColumn(name = "showtime_id", insertable = false, updatable = false)
     private Showtime showtime;

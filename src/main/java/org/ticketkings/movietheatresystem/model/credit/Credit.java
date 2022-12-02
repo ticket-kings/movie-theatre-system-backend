@@ -33,7 +33,7 @@ public class Credit {
     private Date expiryDate;
 
     @OneToOne(mappedBy = "credit")
-    @JsonBackReference(value = "ticket-credit")
+    @JsonBackReference
     private Ticket ticket;
 
     public Credit(int id, float amount, Date expiryDate) {

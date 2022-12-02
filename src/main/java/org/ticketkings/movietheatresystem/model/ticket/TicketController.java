@@ -9,6 +9,8 @@ import org.ticketkings.movietheatresystem.model.payment.ticket.TicketPayment;
 import org.ticketkings.movietheatresystem.model.payment.ticket.TicketPaymentStrategy;
 import org.ticketkings.movietheatresystem.model.seat.Seat;
 import org.ticketkings.movietheatresystem.model.seat.SeatService;
+import org.ticketkings.movietheatresystem.model.showing.Showing;
+import org.ticketkings.movietheatresystem.model.showing.ShowingService;
 import org.ticketkings.movietheatresystem.model.showtime.Showtime;
 import org.ticketkings.movietheatresystem.model.showtime.ShowtimeService;
 import org.ticketkings.movietheatresystem.model.user.User;
@@ -26,6 +28,7 @@ public class TicketController {
     private final UserService userService;
     private final CreditService creditService;
     private final ShowtimeService showtimeService;
+    private final ShowingService showingService;
 
     public TicketController(
             TicketService ticketService,
@@ -33,7 +36,8 @@ public class TicketController {
             PaymentService paymentService,
             UserService userService,
             CreditService creditService,
-            ShowtimeService showtimeService
+            ShowtimeService showtimeService,
+            ShowingService showingService
     ) {
         this.ticketService = ticketService;
         this.seatService = seatService;
@@ -41,6 +45,7 @@ public class TicketController {
         this.userService = userService;
         this.creditService = creditService;
         this.showtimeService = showtimeService;
+        this.showingService = showingService;
     }
 
     @GetMapping
@@ -88,6 +93,10 @@ public class TicketController {
         Payment payment = paymentService.executePaymentStrategy(ticket.getPayment());
         ticket.setPaymentId(payment.getId());
         ticket.setPayment((TicketPayment) payment);
+
+        Showing showing = showingService.getShowingBySeat(seat);
+        ticket.setShowingId(showing.getId());
+        ticket.setShowing(showing);
 
         return ticketService.createTicket(ticket);
     }
