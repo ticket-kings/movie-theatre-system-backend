@@ -3,7 +3,6 @@ package org.ticketkings.movietheatresystem.model.user;
 import lombok.Getter;
 import lombok.Setter;
 import org.ticketkings.movietheatresystem.model.card.Card;
-import org.ticketkings.movietheatresystem.model.credit.Credit;
 
 import javax.persistence.*;
 

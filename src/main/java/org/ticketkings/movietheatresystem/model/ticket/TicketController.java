@@ -3,8 +3,10 @@ package org.ticketkings.movietheatresystem.model.ticket;
 import org.springframework.web.bind.annotation.*;
 import org.ticketkings.movietheatresystem.model.credit.Credit;
 import org.ticketkings.movietheatresystem.model.credit.CreditService;
+import org.ticketkings.movietheatresystem.model.payment.Payment;
+import org.ticketkings.movietheatresystem.model.payment.PaymentService;
 import org.ticketkings.movietheatresystem.model.payment.ticket.TicketPayment;
-import org.ticketkings.movietheatresystem.model.payment.ticket.TicketPaymentService;
+import org.ticketkings.movietheatresystem.model.payment.ticket.TicketPaymentStrategy;
 import org.ticketkings.movietheatresystem.model.seat.Seat;
 import org.ticketkings.movietheatresystem.model.seat.SeatService;
 import org.ticketkings.movietheatresystem.model.showtime.Showtime;
@@ -20,7 +22,7 @@ public class TicketController {
 
     private final TicketService ticketService;
     private final SeatService seatService;
-    private final TicketPaymentService ticketPaymentService;
+    private final PaymentService paymentService;
     private final UserService userService;
     private final CreditService creditService;
     private final ShowtimeService showtimeService;
@@ -28,14 +30,14 @@ public class TicketController {
     public TicketController(
             TicketService ticketService,
             SeatService seatService,
-            TicketPaymentService ticketPaymentService,
+            PaymentService paymentService,
             UserService userService,
             CreditService creditService,
             ShowtimeService showtimeService
     ) {
         this.ticketService = ticketService;
         this.seatService = seatService;
-        this.ticketPaymentService = ticketPaymentService;
+        this.paymentService = paymentService;
         this.userService = userService;
         this.creditService = creditService;
         this.showtimeService = showtimeService;
@@ -77,9 +79,10 @@ public class TicketController {
         }
 
         ticket.getPayment().setAmount(price);
-        TicketPayment payment = ticketPaymentService.createTicketPayment(ticket.getPayment());
+        paymentService.setPaymentStrategy(new TicketPaymentStrategy());
+        Payment payment = paymentService.executePaymentStrategy(ticket.getPayment());
         ticket.setPaymentId(payment.getId());
-        ticket.setPayment(payment);
+        ticket.setPayment((TicketPayment) payment);
 
         return ticketService.createTicket(ticket);
     }
