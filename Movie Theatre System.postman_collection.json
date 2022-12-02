@@ -97,6 +97,30 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "getRegisteredUserTickets",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/user/registered/1/tickets",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"registered",
+										"1",
+										"tickets"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
