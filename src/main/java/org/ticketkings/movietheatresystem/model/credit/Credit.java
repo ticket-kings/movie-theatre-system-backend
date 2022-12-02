@@ -83,7 +83,7 @@ public class Credit {
 
     private Date oneYearFromNow() {
         Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.SECOND, 5);
+        cal.add(Calendar.YEAR, 1);
         return cal.getTime();
     }
 
