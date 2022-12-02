@@ -36,6 +36,16 @@ public class RegisteredUserService {
         return registeredUserRepository.findAll();
     }
 
+    public RegisteredUser getRegisteredUser(Integer id) {
+        Optional<RegisteredUser> optional = registeredUserRepository.findById(id);
+
+        if (optional.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User with ID: " + id + " does not exist");
+        }
+
+        return optional.get();
+    }
+
     public RegisteredUser createRegisteredUser(RegisteredUser registeredUser) {
         if (registeredUser.getId() != null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "id is not required to create a registered user");

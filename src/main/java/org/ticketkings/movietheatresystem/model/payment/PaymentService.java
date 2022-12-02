@@ -31,6 +31,10 @@ public class PaymentService {
         return ticketPaymentRepository.findAll();
     }
 
+    public List<TicketPayment> getTicketPaymentsByCardId(Integer cardId) {
+        return ticketPaymentRepository.findByCardId(cardId);
+    }
+
     public List<AnnualPayment> getAnnualPayments() {
         return annualPaymentRepository.findAll();
     }
