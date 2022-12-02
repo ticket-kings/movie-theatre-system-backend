@@ -41,4 +41,8 @@ public class Movie {
 
     public Movie() {
     }
+
+    public void releaseMovie() {
+        this.isReleased = true;
+    }
 }

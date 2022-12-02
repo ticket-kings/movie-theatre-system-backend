@@ -42,7 +42,7 @@ public class MovieService {
         }
 
         Movie movie = optional.get();
-        movie.setIsReleased(true);
+        movie.releaseMovie();
         return movieRepository.save(movie);
     }
 
