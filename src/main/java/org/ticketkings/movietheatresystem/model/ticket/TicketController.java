@@ -48,6 +48,11 @@ public class TicketController {
         return ticketService.getTickets();
     }
 
+    @GetMapping("/{ticketId}")
+    public Ticket getTicketById(@PathVariable Integer ticketId) {
+        return ticketService.getTicket(ticketId);
+    }
+
     @DeleteMapping("/{ticketId}")
     public Credit cancelTicket(@PathVariable Integer ticketId) {
         Ticket ticket = ticketService.getTicket(ticketId);
