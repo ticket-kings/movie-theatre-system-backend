@@ -45,4 +45,8 @@ public class TicketService {
 
         return ticketRepository.save(ticket);
     }
+
+    public Ticket getTicketByPaymentId(Integer paymentId) {
+        return ticketRepository.findByPaymentId(paymentId);
+    }
 }
