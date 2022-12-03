@@ -50,13 +50,15 @@ VALUES
 
 CREATE TABLE IF NOT EXISTS movie_theatre_system.credit (
 	id int PRIMARY KEY auto_increment,
+	code varchar(6) NOT NULL,
     amount FLOAT NOT NULL,
+    expired boolean NOT NULL,
     expiry_date datetime NOT NULL
 );
 
-INSERT INTO movie_theatre_system.credit (id, amount, expiry_date)
+INSERT INTO movie_theatre_system.credit (id, code, amount, expired, expiry_date)
 VALUES
-	(1, 2.50, "2023-11-24 12:00:00");
+	(1, "A1B2C3", 2.50, false, "2023-11-24 12:00:00");
     
 CREATE TABLE IF NOT EXISTS movie_theatre_system.user (
 	id int PRIMARY KEY auto_increment,

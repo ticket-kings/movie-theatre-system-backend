@@ -21,16 +21,14 @@ public class CreditController {
         return creditService.getCredits();
     }
 
-    @GetMapping("/{creditId}")
-    public Credit getCredit(@PathVariable Integer creditId) {
-        return creditService.getCredit(creditId);
+    @GetMapping("/{code}")
+    public Credit getCredit(@PathVariable String code) {
+        return creditService.getCreditByCode(code);
     }
 
-    @GetMapping("/{creditId}/check/{price}")
-    public Credit checkCredit(@PathVariable Integer creditId, @PathVariable Float price) {
-        Credit credit = creditService.getCredit(creditId);
-        credit.apply(price);
-        return credit;
+    @GetMapping("/{code}/check")
+    public Credit checkCredit(@PathVariable String code) {
+        return creditService.checkCreditCode(code);
     }
 
 }

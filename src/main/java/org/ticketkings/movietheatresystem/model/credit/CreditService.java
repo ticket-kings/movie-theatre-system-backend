@@ -28,11 +28,21 @@ public class CreditService {
         return creditRepository.findAll();
     }
 
-    public Credit getCredit(Integer id) {
-        Optional<Credit> optional = creditRepository.findById(id);
+    public Credit checkCreditCode(String code) {
+        Credit credit = getCreditByCode(code);
+
+        if (credit.getExpired()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Credit with code: " + code.toUpperCase() + " is expired");
+        }
+
+        return credit;
+    }
+
+    public Credit getCreditByCode(String code) {
+        Optional<Credit> optional = creditRepository.findByCode(code.toUpperCase());
 
         if (optional.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Credit with ID: " + id + " is invalid");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Credit with code: " + code.toUpperCase() + " does not exist");
         }
 
         return optional.get();
@@ -45,11 +55,8 @@ public class CreditService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Credit with ID: " + credit.getId() + " is invalid");
         }
 
-        if (credit.getAmount() <= 0) {
-            creditRepository.delete(credit);
-            credit.setId(null);
-            return credit;
-        }
+        if (credit.getAmount() <= 0)
+            return expireCredit(credit);
 
         return creditRepository.save(credit);
     }
@@ -70,19 +77,20 @@ public class CreditService {
     private void scheduleExpiry(Credit credit) {
         long timeUntilExpiry = credit.getExpiryDate().getTime() - System.currentTimeMillis();
         ScheduledExecutorService expireCredit = Executors.newSingleThreadScheduledExecutor();
-        expireCredit.schedule(() -> deleteCredit(credit), timeUntilExpiry, TimeUnit.MILLISECONDS);
+        expireCredit.schedule(() -> expireCredit(credit), timeUntilExpiry, TimeUnit.MILLISECONDS);
     }
 
-    public void deleteCredit(Credit credit) {
-        getCredit(credit.getId()); // check if credit exists
-        creditRepository.delete(credit);
+    public Credit expireCredit(Credit credit) {
+        throwIfNotExists(credit.getId()); // check if credit exists
+        credit.expireCredit();
+        return creditRepository.save(credit);
     }
 
     public void throwIfNotExists(Integer id) {
         Optional<Credit> optional = creditRepository.findById(id);
 
         if (optional.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Credit with ID: " + id + " is invalid");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Credit with ID: " + id + " does not exist");
         }
     }
 }
