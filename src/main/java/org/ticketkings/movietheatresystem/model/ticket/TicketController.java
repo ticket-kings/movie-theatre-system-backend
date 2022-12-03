@@ -73,7 +73,10 @@ public class TicketController {
         Showtime showtime = showtimeService.decrementSeats(ticket.getSeat().getShowtimeId());
         User user = userService.getUserByCardId(ticket.getPayment().getCardId());
 
-        return creditService.createCredit(user, showtime, seat);
+        Credit credit = creditService.createCredit(user, showtime, seat);
+        credit.createCreditEmail(user, emailService);
+
+        return credit;
     }
 
     @PostMapping

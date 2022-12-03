@@ -48,7 +48,7 @@ public class RegisteredUser extends User {
                         "\tNumber: " + getCard().getCardNumber() + "\n" +
                         "\tExpiry Date: " + getCard().getExpiryDate() + "\n" +
                         "\tCVV: " + getCard().getCvv() + "\n\n" +
-                        "Enjoy your stay!\n\n" +
+                        "See you on the big screen!\n\n" +
                         "Ticket Kings Inc.")
         );
     }

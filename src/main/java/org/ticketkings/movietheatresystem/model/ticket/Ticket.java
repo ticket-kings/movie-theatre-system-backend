@@ -9,6 +9,7 @@ import org.ticketkings.movietheatresystem.model.payment.ticket.TicketPayment;
 import org.ticketkings.movietheatresystem.model.seat.Seat;
 import org.ticketkings.movietheatresystem.model.showing.Showing;
 import org.ticketkings.movietheatresystem.model.user.User;
+import org.ticketkings.movietheatresystem.model.user.registered.RegisteredUser;
 
 import javax.persistence.*;
 import java.text.DateFormat;
@@ -77,7 +78,7 @@ public class Ticket {
         DateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy h:mm aa z");
         return user.getName() + ",\n\n" +
                 "This is a confirmation that your ticket has been reserved!\n\n" +
-                "Your showtime information and receipt is shown below:\n\n" +
+                "Here is your showtime information and e-receipt:\n\n" +
                 "Movie:\n" +
                 "\tName: " + getShowing().getMovie().getName() + "\n" +
                 "\tDescription: " + getShowing().getMovie().getDescription() + "\n" +
@@ -94,6 +95,7 @@ public class Ticket {
                 "\tNumber: " + user.getCard().getCardNumber() + "\n" +
                 "\tExpiry Date: " + user.getCard().getExpiryDate() + "\n" +
                 "\tCVV: " + user.getCard().getCvv() + "\n\n" +
+                getCancellationNotice(user) +
                 "See you on the big screen!\n\n" +
                 "Ticket Kings Inc.";
     }
@@ -102,5 +104,13 @@ public class Ticket {
         if (Objects.equals(payment.getAmount(), seat.getPrice())) return "N/A";
 
         return "-$" + String.format("%.2f", seat.getPrice() - payment.getAmount());
+    }
+
+    private String getCancellationNotice(User user) {
+        if (user instanceof RegisteredUser)
+            return "As you are a registered user, you may cancel this ticket at any time to receive a full credit refund!\n\n";
+        else
+            return "As you are a guest user, you may receive a credit with 15% administration fee if you cancel this ticket 72 hours before showtime. " +
+                    "Please note that you will not receive any credit if you cancel less than 72 hours before showtime.\n\n";
     }
 }

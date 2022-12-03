@@ -1,5 +1,7 @@
 package org.ticketkings.movietheatresystem.model.credit;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -8,6 +10,8 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
+import org.ticketkings.movietheatresystem.email.EmailDetails;
+import org.ticketkings.movietheatresystem.email.EmailService;
 import org.ticketkings.movietheatresystem.model.seat.Seat;
 import org.ticketkings.movietheatresystem.model.showtime.Showtime;
 import org.ticketkings.movietheatresystem.model.ticket.Ticket;
@@ -84,6 +88,34 @@ public class Credit {
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.YEAR, 1);
         return cal.getTime();
+    }
+
+    public void createCreditEmail(User user, EmailService emailService) {
+        emailService.sendEmail(new EmailDetails(
+                        user.getEmailAddress(),
+                        "Ticket Cancellation Confirmation",
+                        amount == 0 ? createNoCreditEmailBody(user) : createCreditEmailBody(user)
+                )
+        );
+    }
+
+    private String createCreditEmailBody(User user) {
+        DateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy h:mm aa z");
+        return user.getName() + ",\n\n" +
+                "This is a confirmation that your ticket has been cancelled.\n\n" +
+                "You have received a credit of $" + String.format("%.2f", amount) + " that can be applied to your next ticket purchase!\n\n" +
+                "Simply enter the following code on your ticket purchase: " + id + "\n\n" +
+                "Please note that this code will expire on " + dateFormat.format(expiryDate) + "\n\n" +
+                "See you on the big screen!\n\n" +
+                "Ticket Kings Inc.";
+    }
+
+    private String createNoCreditEmailBody(User user) {
+        return user.getName() + ",\n\n" +
+                "This is a confirmation that your ticket has been cancelled.\n\n" +
+                "Unfortunately, we are unable to issue you a credit as the cancellation was too late.\n\n" +
+                "Please consider signing up as a registered user to receive full refunds on cancellations!\n\n" +
+                "Ticket Kings Inc.";
     }
 
 }

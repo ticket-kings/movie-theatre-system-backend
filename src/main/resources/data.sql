@@ -128,12 +128,12 @@ CREATE TABLE IF NOT EXISTS movie_theatre_system.showtime(
 
 INSERT INTO movie_theatre_system.showtime (id, time, reserved_seats, capacity)
 VALUES 
-	(1, '2022-12-01 20:00:00', 3, 10),
-    (2, '2022-12-02 20:00:00', 0, 10),
-    (3, '2022-12-01 20:00:00', 0, 2),
-    (4, '2022-12-02 20:00:00', 0, 2),
-    (5, '2022-12-01 20:00:00', 0, 2),
-    (6, '2022-11-30 20:00:00', 0, 2);
+	(1, '2022-12-05 20:00:00', 3, 10),
+    (2, '2022-12-06 20:00:00', 0, 10),
+    (3, '2022-12-05 20:00:00', 0, 2),
+    (4, '2022-12-06 20:00:00', 0, 2),
+    (5, '2022-12-05 20:00:00', 0, 2),
+    (6, '2022-12-06 20:00:00', 0, 2);
 
 CREATE TABLE IF NOT EXISTS movie_theatre_system.showing (
 	id int PRIMARY KEY auto_increment,
