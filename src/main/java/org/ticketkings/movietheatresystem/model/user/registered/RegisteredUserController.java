@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.ticketkings.movietheatresystem.email.EmailDetails;
+import org.ticketkings.movietheatresystem.email.EmailService;
 import org.ticketkings.movietheatresystem.model.card.Card;
 import org.ticketkings.movietheatresystem.model.card.CardService;
 import org.ticketkings.movietheatresystem.model.payment.PaymentService;
@@ -22,18 +24,21 @@ public class RegisteredUserController {
 	private final CardService cardService;
 	private final PaymentService paymentService;
 	private final TicketService ticketService;
+	private final EmailService emailService;
 
 	@Autowired
 	public RegisteredUserController(
 			RegisteredUserService registeredUserService,
 			CardService cardService,
 			PaymentService paymentService,
-			TicketService ticketService
+			TicketService ticketService,
+			EmailService emailService
 	) {
 		this.registeredUserService = registeredUserService;
 		this.cardService = cardService;
 		this.paymentService = paymentService;
 		this.ticketService = ticketService;
+		this.emailService = emailService;
 	}
 
 	@GetMapping("/login")
@@ -60,7 +65,16 @@ public class RegisteredUserController {
 		card.setPayments(List.of(paymentService.executePaymentStrategy(annualPayment)));
 
 		registeredUser.setCardId(card.getId());
-		return registeredUserService.createRegisteredUser(registeredUser);
+
+		RegisteredUser user = registeredUserService.createRegisteredUser(registeredUser);
+
+		emailService.sendSimpleMail(new EmailDetails(
+				user.getEmailAddress(),
+				"Test subject",
+				"Hello, this is a test for ENSF 614")
+		);
+
+		return user;
 	}
 
 	@GetMapping("{userId}/tickets")
