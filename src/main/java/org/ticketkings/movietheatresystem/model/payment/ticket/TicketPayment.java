@@ -10,6 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+/**
+ * Represents a Payment object that is responsible for ticket payments
+ */
 @Entity
 @Getter
 @Setter

@@ -9,6 +9,9 @@ import org.ticketkings.movietheatresystem.model.payment.PaymentStrategy;
 import java.util.Date;
 import java.util.Optional;
 
+/**
+ * Implementation of a payment strategy algorithm that executes a ticket payment action
+ */
 public class TicketPaymentStrategy implements PaymentStrategy {
 
     private PaymentService paymentService;

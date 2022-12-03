@@ -10,6 +10,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Implementation of a payment strategy algorithm that executes an annual payment action
+ */
 public class AnnualPaymentStrategy implements PaymentStrategy {
     @Override
     public Payment makePayment(PaymentService paymentService, Payment payment) {

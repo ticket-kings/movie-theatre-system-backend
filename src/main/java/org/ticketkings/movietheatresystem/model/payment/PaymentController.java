@@ -9,6 +9,9 @@ import org.ticketkings.movietheatresystem.model.payment.ticket.TicketPayment;
 
 import java.util.List;
 
+/**
+ * Controller class that directs the payment API endpoints to the correct service functionality
+ */
 @RestController
 @RequestMapping(path = "api/v1/payment")
 public class PaymentController {

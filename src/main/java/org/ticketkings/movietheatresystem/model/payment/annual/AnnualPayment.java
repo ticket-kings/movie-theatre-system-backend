@@ -11,6 +11,9 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import java.util.Date;
 
+/**
+ * Represents a Payment object that is responsible for annual payments
+ */
 @Entity
 @Getter
 @Setter

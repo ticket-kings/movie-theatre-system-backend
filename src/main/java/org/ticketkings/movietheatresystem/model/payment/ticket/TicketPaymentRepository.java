@@ -5,6 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Boundary class that is used to query the database for TicketPayment objects
+ */
 @Repository
 public interface TicketPaymentRepository extends JpaRepository<TicketPayment, Integer> {
 

@@ -9,6 +9,9 @@ import org.ticketkings.movietheatresystem.model.payment.ticket.TicketPaymentRepo
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Executes payment business logic and uses repository class to retrieve data from the database
+ */
 @Service
 public class PaymentService {
 
