@@ -14,7 +14,7 @@ public class EmailService {
 
     @Value("${spring.mail.username}") private String sender;
 
-    public String sendSimpleMail(EmailDetails details)
+    public String sendEmail(EmailDetails details)
     {
 
         // Try block to check for exceptions

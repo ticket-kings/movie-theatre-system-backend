@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.ticketkings.movietheatresystem.email.EmailDetails;
 import org.ticketkings.movietheatresystem.email.EmailService;
 import org.ticketkings.movietheatresystem.model.card.Card;
 import org.ticketkings.movietheatresystem.model.card.CardService;
@@ -68,11 +67,7 @@ public class RegisteredUserController {
 
 		RegisteredUser user = registeredUserService.createRegisteredUser(registeredUser);
 
-		emailService.sendSimpleMail(new EmailDetails(
-				user.getEmailAddress(),
-				"Test subject",
-				"Hello, this is a test for ENSF 614")
-		);
+		user.sendRegistrationConfirmationEmail(emailService);
 
 		return user;
 	}
