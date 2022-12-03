@@ -30,6 +30,9 @@ public class Credit {
     @Column(name = "id")
     private Integer id;
 
+    @Column(name = "code")
+    private String code;
+
     @Column(name = "amount")
     private Float amount;
 
@@ -40,8 +43,9 @@ public class Credit {
     @JsonBackReference
     private Ticket ticket;
 
-    public Credit(int id, float amount, Date expiryDate) {
+    public Credit(int id, String code, float amount, Date expiryDate) {
         this.id = id;
+        this.code = code;
         this.amount = amount;
         this.expiryDate = expiryDate;
     }
@@ -75,6 +79,7 @@ public class Credit {
         }
 
         expiryDate = oneYearFromNow();
+        code = generateCode();
     }
 
     private boolean isMoreThan3DaysFromNow(Date time) {
@@ -88,6 +93,20 @@ public class Credit {
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.YEAR, 1);
         return cal.getTime();
+    }
+
+    private String generateCode() {
+        String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String digits = "0123456789";
+        String symbols = letters + digits;
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < 6; i++) {
+            int index = (int)(symbols.length() * Math.random());
+            sb.append(symbols.charAt(index));
+        }
+
+        return sb.toString();
     }
 
     public void createCreditEmail(User user, EmailService emailService) {
@@ -104,7 +123,8 @@ public class Credit {
         return user.getName() + ",\n\n" +
                 "This is a confirmation that your ticket has been cancelled.\n\n" +
                 "You have received a credit of $" + String.format("%.2f", amount) + " that can be applied to your next ticket purchase!\n\n" +
-                "Simply enter the following code on your ticket purchase: " + id + "\n\n" +
+                "Simply enter the following code on your ticket purchase: " + "\n\n" +
+                code + "\n\n" +
                 "Please note that this code will expire on " + dateFormat.format(expiryDate) + "\n\n" +
                 "See you on the big screen!\n\n" +
                 "Ticket Kings Inc.";
