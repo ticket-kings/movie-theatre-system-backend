@@ -74,7 +74,7 @@ public class Ticket {
     }
 
     private String createTicketPurchasedEmailBody(User user) {
-        DateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy hh:mm aa z");
+        DateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy h:mm aa z");
         return user.getName() + ",\n\n" +
                 "This is a confirmation that your ticket has been reserved!\n\n" +
                 "Your showtime information and receipt is shown below:\n\n" +
@@ -84,12 +84,12 @@ public class Ticket {
                 "\tDuration: " + getShowing().getMovie().getDuration() + " minutes\n\n" +
                 "Showtime:\n" +
                 "\tTime: " + dateFormat.format(getShowing().getShowtime().getTime()) + "\n" +
-                "\tSeat: " + getSeat().getSeatNumber() + "\n" +
-                "\tSeat Price: $" + String.format("%.2f", getSeat().getPrice()) + "\n\n" +
+                "\tSeat: " + getSeat().getSeatNumber() + "\n\n" +
                 "Payment Information:\n" +
+                "\tSeat Price: $" + String.format("%.2f", getSeat().getPrice()) + "\n" +
+                "\tCredit Applied: " + getCreditApplied() + "\n" +
                 "\tAmount Paid: $" + String.format("%.2f", getPayment().getAmount()) + "\n" +
-                "\tPayment Date: " + dateFormat.format(getPayment().getPaymentDate()) + "\n" +
-                "\tCredit Applied: " + getCreditApplied() + "\n\n" +
+                "\tPayment Date: " + dateFormat.format(getPayment().getPaymentDate()) + "\n\n" +
                 "Credit Card:\n" +
                 "\tNumber: " + user.getCard().getCardNumber() + "\n" +
                 "\tExpiry Date: " + user.getCard().getExpiryDate() + "\n" +
@@ -101,6 +101,6 @@ public class Ticket {
     private String getCreditApplied() {
         if (Objects.equals(payment.getAmount(), seat.getPrice())) return "N/A";
 
-        return "$" + String.format("%.2f", seat.getPrice() - payment.getAmount());
+        return "-$" + String.format("%.2f", seat.getPrice() - payment.getAmount());
     }
 }
