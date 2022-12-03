@@ -36,6 +36,9 @@ public class Credit {
     @Column(name = "amount")
     private Float amount;
 
+    @Column(name = "expired")
+    private Boolean expired;
+
     @Column(name = "expiry_date")
     private Date expiryDate;
 
@@ -43,15 +46,19 @@ public class Credit {
     @JsonBackReference
     private Ticket ticket;
 
-    public Credit(int id, String code, float amount, Date expiryDate) {
+    public Credit(int id, String code, float amount, Boolean expired, Date expiryDate) {
         this.id = id;
         this.code = code;
         this.amount = amount;
+        this.expired = expired;
         this.expiryDate = expiryDate;
     }
 
     public Credit() {
+    }
 
+    public void expireCredit() {
+        expired = true;
     }
 
     public Float apply(Float price) {
@@ -80,6 +87,7 @@ public class Credit {
 
         expiryDate = oneYearFromNow();
         code = generateCode();
+        expired = false;
     }
 
     private boolean isMoreThan3DaysFromNow(Date time) {
@@ -96,8 +104,8 @@ public class Credit {
     }
 
     private String generateCode() {
-        String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        String digits = "0123456789";
+        String letters = "ABCDEFGHJKLMNPQRSTUVWXYZ";
+        String digits = "123456789";
         String symbols = letters + digits;
         StringBuilder sb = new StringBuilder();
 

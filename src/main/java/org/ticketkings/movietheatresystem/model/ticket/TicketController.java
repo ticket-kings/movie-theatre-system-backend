@@ -87,12 +87,15 @@ public class TicketController {
         ticket.setSeat(seat);
 
         Float price = seat.getPrice();
-        if (ticket.getCreditId() != null) {
-            Credit credit = creditService.getCredit(ticket.getCreditId());
+        if (ticket.getCredit().getCode() != null) {
+            Credit credit = creditService.getCreditByCode(ticket.getCredit().getCode());
             price = credit.apply(price);
             credit = creditService.saveCredit(credit);
             ticket.setCreditId(credit.getId());
+            ticket.setCredit(credit);
         }
+        else
+            ticket.setCredit(null);
 
         ticket.getPayment().setAmount(price);
         paymentService.setPaymentStrategy(new TicketPaymentStrategy());
