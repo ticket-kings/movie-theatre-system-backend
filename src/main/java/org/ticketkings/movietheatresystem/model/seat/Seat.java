@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 import org.ticketkings.movietheatresystem.model.showtime.Showtime;
-import org.ticketkings.movietheatresystem.model.ticket.Ticket;
 
 @Entity
 @Getter

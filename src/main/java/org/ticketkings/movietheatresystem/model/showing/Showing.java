@@ -6,7 +6,6 @@ import org.ticketkings.movietheatresystem.model.theatre.Theatre;
 import org.ticketkings.movietheatresystem.model.movie.Movie;
 import org.ticketkings.movietheatresystem.model.showtime.Showtime;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Getter;
 import lombok.Setter;
