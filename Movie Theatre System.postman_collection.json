@@ -505,7 +505,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/credit/1",
+							"raw": "http://localhost:8080/api/v1/credit/A1B2C3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -515,7 +515,7 @@
 								"api",
 								"v1",
 								"credit",
-								"1"
+								"A1B2C3"
 							]
 						}
 					},
@@ -527,7 +527,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/credit/1/check/10",
+							"raw": "http://localhost:8080/api/v1/credit/A1B2C3/check/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -537,9 +537,9 @@
 								"api",
 								"v1",
 								"credit",
-								"1",
+								"A1B2C3",
 								"check",
-								"10"
+								""
 							]
 						}
 					},
@@ -685,7 +685,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": null,\n    \"paymentId\": null,\n    \"seatId\": 2,\n    \"creditId\": 1,\n    \"payment\": {\n        \"id\": null,\n        \"amount\": null,\n        \"paymentDate\": null,\n        \"cardId\": 1\n    },\n    \"seat\": null\n}",
+							"raw": "{\n    \"id\": null,\n    \"paymentId\": null,\n    \"seatId\": 15,\n    \"creditId\": null,\n    \"payment\": {\n        \"id\": null,\n        \"amount\": null,\n        \"paymentDate\": null,\n        \"cardId\": 1\n    },\n    \"credit\": {\n        \"code\": \"A1B2C3\"\n    },\n    \"seat\": null\n}",
 							"options": {
 								"raw": {
 									"language": "json"
