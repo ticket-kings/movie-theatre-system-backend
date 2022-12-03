@@ -89,7 +89,7 @@ public class Ticket {
                 "Payment Information:\n" +
                 "\tAmount Paid: $" + String.format("%.2f", getPayment().getAmount()) + "\n" +
                 "\tPayment Date: " + dateFormat.format(getPayment().getPaymentDate()) + "\n" +
-                "\tCredit Applied: $" + getCreditApplied() + "\n\n" +
+                "\tCredit Applied: " + getCreditApplied() + "\n\n" +
                 "Credit Card:\n" +
                 "\tNumber: " + user.getCard().getCardNumber() + "\n" +
                 "\tExpiry Date: " + user.getCard().getExpiryDate() + "\n" +
@@ -101,6 +101,6 @@ public class Ticket {
     private String getCreditApplied() {
         if (Objects.equals(payment.getAmount(), seat.getPrice())) return "N/A";
 
-        return String.format("%.2f", seat.getPrice() - payment.getAmount());
+        return "$" + String.format("%.2f", seat.getPrice() - payment.getAmount());
     }
 }
