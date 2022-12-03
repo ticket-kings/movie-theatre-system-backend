@@ -41,7 +41,7 @@ public class RegisteredUser extends User {
                 "Your account has been created!",
                 getName() + ",\n\n" +
                         "Thank you for registering for the Ticket Kings Movie Theatre System!\n\n" +
-                        "Please confirm the the details below:\n\n" +
+                        "Please confirm your details below:\n\n" +
                         "Name: " + getName() + "\n" +
                         "Address: " + getAddress() + "\n" +
                         "Card:\n" +
