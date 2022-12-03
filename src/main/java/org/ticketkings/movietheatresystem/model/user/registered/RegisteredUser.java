@@ -3,6 +3,8 @@ package org.ticketkings.movietheatresystem.model.user.registered;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
+import org.ticketkings.movietheatresystem.email.EmailDetails;
+import org.ticketkings.movietheatresystem.email.EmailService;
 import org.ticketkings.movietheatresystem.model.user.User;
 
 import javax.persistence.*;
@@ -31,5 +33,23 @@ public class RegisteredUser extends User {
     }
 
     public RegisteredUser() {
+    }
+
+    public void sendRegistrationConfirmationEmail(EmailService emailService) {
+        emailService.sendEmail(new EmailDetails(
+                getEmailAddress(),
+                "Your account has been created!",
+                getName() + ",\n\n" +
+                        "Thank you for registering for the Ticket Kings Movie Theatre System!\n\n" +
+                        "Please confirm your details below:\n\n" +
+                        "Name: " + getName() + "\n" +
+                        "Address: " + getAddress() + "\n" +
+                        "Card:\n" +
+                        "\tNumber: " + getCard().getCardNumber() + "\n" +
+                        "\tExpiry Date: " + getCard().getExpiryDate() + "\n" +
+                        "\tCVV: " + getCard().getCvv() + "\n\n" +
+                        "Enjoy your stay!\n\n" +
+                        "Ticket Kings Inc.")
+        );
     }
 }

@@ -1,6 +1,7 @@
 package org.ticketkings.movietheatresystem.model.ticket;
 
 import org.springframework.web.bind.annotation.*;
+import org.ticketkings.movietheatresystem.email.EmailService;
 import org.ticketkings.movietheatresystem.model.credit.Credit;
 import org.ticketkings.movietheatresystem.model.credit.CreditService;
 import org.ticketkings.movietheatresystem.model.payment.Payment;
@@ -29,6 +30,7 @@ public class TicketController {
     private final CreditService creditService;
     private final ShowtimeService showtimeService;
     private final ShowingService showingService;
+    private final EmailService emailService;
 
     public TicketController(
             TicketService ticketService,
@@ -37,7 +39,8 @@ public class TicketController {
             UserService userService,
             CreditService creditService,
             ShowtimeService showtimeService,
-            ShowingService showingService
+            ShowingService showingService,
+            EmailService emailService
     ) {
         this.ticketService = ticketService;
         this.seatService = seatService;
@@ -46,6 +49,7 @@ public class TicketController {
         this.creditService = creditService;
         this.showtimeService = showtimeService;
         this.showingService = showingService;
+        this.emailService = emailService;
     }
 
     @GetMapping
@@ -80,7 +84,6 @@ public class TicketController {
         ticket.setSeat(seat);
 
         Float price = seat.getPrice();
-
         if (ticket.getCreditId() != null) {
             Credit credit = creditService.getCredit(ticket.getCreditId());
             price = credit.apply(price);
@@ -97,6 +100,9 @@ public class TicketController {
         Showing showing = showingService.getShowingBySeat(seat);
         ticket.setShowingId(showing.getId());
         ticket.setShowing(showing);
+
+        User user = userService.getUserByCardId(payment.getCardId());
+        ticket.sendTicketPurchasedEmail(user, emailService);
 
         return ticketService.createTicket(ticket);
     }
