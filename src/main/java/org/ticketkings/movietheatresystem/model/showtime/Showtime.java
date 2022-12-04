@@ -16,6 +16,7 @@ import org.ticketkings.movietheatresystem.model.seat.Seat;
 public class Showtime {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
@@ -33,6 +34,12 @@ public class Showtime {
 
     public Showtime(Integer id, Date time, Integer reservedSeats, Integer capacity) {
         this.id = id;
+        this.time = time;
+        this.reservedSeats = reservedSeats;
+        this.capacity = capacity;
+    }
+
+    public Showtime(Date time, Integer reservedSeats, Integer capacity) {
         this.time = time;
         this.reservedSeats = reservedSeats;
         this.capacity = capacity;

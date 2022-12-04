@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.ticketkings.movietheatresystem.model.seat.SeatService;
 import org.ticketkings.movietheatresystem.model.showing.Showing;
 import org.ticketkings.movietheatresystem.model.showing.ShowingService;
 import org.ticketkings.movietheatresystem.model.showtime.Showtime;
@@ -17,16 +18,19 @@ public class MovieController {
     private final MovieService movieService;
     private final ShowingService showingService;
     private final ShowtimeService showtimeService;
+    private final SeatService seatService;
 
     @Autowired
     public MovieController(
             MovieService movieService,
             ShowingService showingService,
-            ShowtimeService showtimeService
+            ShowtimeService showtimeService,
+            SeatService seatService
     ) {
         this.movieService = movieService;
         this.showingService = showingService;
         this.showtimeService = showtimeService;
+        this.seatService = seatService;
     }
 
     @GetMapping
@@ -71,5 +75,16 @@ public class MovieController {
     public List<Movie> getReleasedMovies() {
         List<Movie> movies = getMovies();
         return movies.stream().filter(Movie::getIsReleased).toList();
+    }
+
+    @PostMapping
+    public Movie createMovie(@RequestBody Movie movie) {
+        Movie createdMovie = movieService.createMovie(movie);
+        List<Showtime> createdShowtimes = showtimeService.createDefaultShowtimes();
+        for(Showtime showtime: createdShowtimes) {
+            seatService.createDefaultSeats(showtime.getId());
+            showingService.createDefaultShowing(createdMovie.getId(), showtime.getId());
+        }
+        return createdMovie;
     }
 }

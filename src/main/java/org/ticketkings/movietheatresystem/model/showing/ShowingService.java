@@ -30,4 +30,8 @@ public class ShowingService {
         return showings.stream().filter(s -> s.getShowtime().getSeats().contains(seat)).findFirst().get();
     }
 
+    public void createDefaultShowing(Integer movieId, Integer showtimeId) {
+        Showing showing = new Showing(movieId, 1, showtimeId);
+        showingRepository.save(showing);
+    }
 }

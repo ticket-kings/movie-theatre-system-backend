@@ -14,6 +14,7 @@ import org.ticketkings.movietheatresystem.model.showtime.Showtime;
 public class Seat {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Integer id;
 
@@ -36,6 +37,12 @@ public class Seat {
 
     public Seat(Integer id, String seatNumber, Float price, Boolean reserved) {
         this.id = id;
+        this.price = price;
+        this.seatNumber = seatNumber;
+        this.reserved = reserved;
+    }
+
+    public Seat(String seatNumber, Float price, Boolean reserved) {
         this.price = price;
         this.seatNumber = seatNumber;
         this.reserved = reserved;
