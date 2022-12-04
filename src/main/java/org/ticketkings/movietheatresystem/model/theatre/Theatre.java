@@ -9,6 +9,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Represents the theatre entity
+ */
 @Entity
 @Getter
 @Setter

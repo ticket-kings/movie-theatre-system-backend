@@ -5,6 +5,9 @@ import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Represents the movie entity
+ */
 @Entity
 @Getter
 @Setter

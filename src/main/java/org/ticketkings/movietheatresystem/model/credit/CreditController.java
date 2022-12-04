@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Controller class that directs the credit API endpoints to the correct service functionality
+ */
 @RestController
 @RequestMapping(path = "api/v1/credit")
 public class CreditController {

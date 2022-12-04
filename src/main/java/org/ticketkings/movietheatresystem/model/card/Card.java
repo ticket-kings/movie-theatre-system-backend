@@ -8,6 +8,9 @@ import org.ticketkings.movietheatresystem.model.payment.Payment;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * Represents the card entity
+ */
 @Entity
 @Getter
 @Setter

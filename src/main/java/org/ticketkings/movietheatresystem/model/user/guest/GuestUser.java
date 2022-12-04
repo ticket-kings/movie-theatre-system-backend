@@ -7,6 +7,9 @@ import org.ticketkings.movietheatresystem.model.user.User;
 
 import javax.persistence.*;
 
+/**
+ * Represents the guest user entity
+ */
 @Entity
 @Getter
 @Setter

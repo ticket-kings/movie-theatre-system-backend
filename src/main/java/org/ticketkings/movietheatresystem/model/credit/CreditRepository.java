@@ -5,6 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+/**
+ * Boundary class that is used to query the database for Credit objects
+ */
 @Repository
 public interface CreditRepository extends JpaRepository<Credit, Integer> {
 

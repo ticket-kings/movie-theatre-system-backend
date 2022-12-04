@@ -6,6 +6,9 @@ import org.ticketkings.movietheatresystem.model.card.Card;
 
 import javax.persistence.*;
 
+/**
+ * Represents the movie entity
+ */
 @Entity
 @Getter
 @Setter

@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * Controller class that directs the card API endpoints to the correct service functionality
+ */
 @RestController
 @RequestMapping(path = "api/v1/card")
 public class CardController {

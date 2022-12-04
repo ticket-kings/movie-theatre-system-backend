@@ -16,6 +16,9 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Service class that is responsible for sending emails to users
+ */
 @Service
 public class EmailService {
 

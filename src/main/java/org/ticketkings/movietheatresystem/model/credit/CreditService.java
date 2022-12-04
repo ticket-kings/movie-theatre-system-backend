@@ -14,6 +14,9 @@ import org.ticketkings.movietheatresystem.model.seat.Seat;
 import org.ticketkings.movietheatresystem.model.showtime.Showtime;
 import org.ticketkings.movietheatresystem.model.user.User;
 
+/**
+ * Executes credit business logic and uses repository class to retrieve data from the database
+ */
 @Service
 public class CreditService {
 

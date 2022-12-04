@@ -9,6 +9,9 @@ import org.ticketkings.movietheatresystem.model.showing.Showing;
 
 import javax.persistence.*;
 
+/**
+ * Represents the ticket entity
+ */
 @Entity
 @Getter
 @Setter

@@ -15,6 +15,9 @@ import org.ticketkings.movietheatresystem.model.user.User;
 import org.ticketkings.movietheatresystem.model.user.guest.GuestUser;
 import org.ticketkings.movietheatresystem.model.user.registered.RegisteredUser;
 
+/**
+ * Represents the credit entity
+ */
 @Entity
 @Getter
 @Setter

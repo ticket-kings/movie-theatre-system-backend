@@ -4,6 +4,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Executes card business logic and uses repository class to retrieve data from the database
+ */
 @Service
 public class CardService {
 

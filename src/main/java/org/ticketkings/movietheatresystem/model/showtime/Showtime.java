@@ -9,6 +9,9 @@ import lombok.Getter;
 import lombok.Setter;
 import org.ticketkings.movietheatresystem.model.seat.Seat;
 
+/**
+ * Represents the showtime entity
+ */
 @Entity
 @Getter
 @Setter
