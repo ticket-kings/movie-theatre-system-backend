@@ -6,8 +6,11 @@
 1. Nicolas Hirschfeld – 30172066 
 
 ## Instructions to run
-Run the main function located in `MovieTheatreSystemApplication.java`.
-This will automatically create the database with default values.
+1. Make sure you have MySQL downloaded.
+1. Navigate to `src/main/resources/application.properties` and set your username in `spring.datasource.username=root` and password in `spring.datasource.password=`
+1. Run the main function located in `MovieTheatreSystemApplication.java`.
+
+Running the main function will automatically create the database with default values.
 
 When the Spring Boot application starts, you may run the frontend and start making requests.
 
