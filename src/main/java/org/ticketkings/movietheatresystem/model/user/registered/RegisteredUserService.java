@@ -8,6 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+/**
+ * Executes registered user business logic and uses repository class to retrieve data from the database
+ */
 @Service
 public class RegisteredUserService {
 

@@ -9,6 +9,9 @@ import org.springframework.web.server.ResponseStatusException;
 import org.ticketkings.movietheatresystem.model.user.User;
 import org.ticketkings.movietheatresystem.model.user.guest.GuestUser;
 
+/**
+ * Executes seat business logic and uses repository class to retrieve data from the database
+ */
 @Service
 public class SeatService {
 

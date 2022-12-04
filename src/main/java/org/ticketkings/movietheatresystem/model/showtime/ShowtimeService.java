@@ -6,6 +6,9 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.*;
 
+/**
+ * Executes showtime business logic and uses repository class to retrieve data from the database
+ */
 @Service
 public class ShowtimeService {
 
