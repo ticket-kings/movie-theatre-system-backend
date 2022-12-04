@@ -2,19 +2,12 @@ package org.ticketkings.movietheatresystem.model.ticket;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.ticketkings.movietheatresystem.email.EmailDetails;
-import org.ticketkings.movietheatresystem.email.EmailService;
 import org.ticketkings.movietheatresystem.model.credit.Credit;
 import org.ticketkings.movietheatresystem.model.payment.ticket.TicketPayment;
 import org.ticketkings.movietheatresystem.model.seat.Seat;
 import org.ticketkings.movietheatresystem.model.showing.Showing;
-import org.ticketkings.movietheatresystem.model.user.User;
-import org.ticketkings.movietheatresystem.model.user.registered.RegisteredUser;
 
 import javax.persistence.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Objects;
 
 @Entity
 @Getter
@@ -63,54 +56,5 @@ public class Ticket {
         this.paymentId = paymentId;
         this.seatId = seatId;
         this.creditId = creditId;
-    }
-
-    public void sendTicketPurchasedEmail(User user, EmailService emailService) {
-        emailService.sendEmail(new EmailDetails(
-                user.getEmailAddress(),
-                "Your ticket has been reserved!",
-                createTicketPurchasedEmailBody(user)
-            )
-        );
-    }
-
-    private String createTicketPurchasedEmailBody(User user) {
-        DateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy h:mm aa z");
-        return user.getName() + ",\n\n" +
-                "This is a confirmation that your ticket has been reserved!\n\n" +
-                "Here is your showtime information and e-receipt:\n\n" +
-                "Movie:\n" +
-                "\tName: " + getShowing().getMovie().getName() + "\n" +
-                "\tDescription: " + getShowing().getMovie().getDescription() + "\n" +
-                "\tDuration: " + getShowing().getMovie().getDuration() + " minutes\n\n" +
-                "Showtime:\n" +
-                "\tTime: " + dateFormat.format(getShowing().getShowtime().getTime()) + "\n" +
-                "\tSeat: " + getSeat().getSeatNumber() + "\n\n" +
-                "Payment Information:\n" +
-                "\tSeat Price: $" + String.format("%.2f", getSeat().getPrice()) + "\n" +
-                "\tCredit Applied: " + getCreditApplied() + "\n" +
-                "\tAmount Paid: $" + String.format("%.2f", getPayment().getAmount()) + "\n" +
-                "\tPayment Date: " + dateFormat.format(getPayment().getPaymentDate()) + "\n\n" +
-                "Credit Card:\n" +
-                "\tNumber: " + user.getCard().getCardNumber() + "\n" +
-                "\tExpiry Date: " + user.getCard().getExpiryDate() + "\n" +
-                "\tCVV: " + user.getCard().getCvv() + "\n\n" +
-                getCancellationNotice(user) +
-                "See you on the big screen!\n\n" +
-                "Ticket Kings Inc.";
-    }
-
-    private String getCreditApplied() {
-        if (Objects.equals(payment.getAmount(), seat.getPrice())) return "N/A";
-
-        return "-$" + String.format("%.2f", seat.getPrice() - payment.getAmount());
-    }
-
-    private String getCancellationNotice(User user) {
-        if (user instanceof RegisteredUser)
-            return "As you are a registered user, you may cancel this ticket at any time to receive a full credit refund!\n\n";
-        else
-            return "As you are a guest user, you may receive a credit with 15% administration fee if you cancel this ticket 72 hours before showtime. " +
-                    "Please note that you will not receive any credit if you cancel less than 72 hours before showtime.\n\n";
     }
 }

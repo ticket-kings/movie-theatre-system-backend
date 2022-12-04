@@ -67,7 +67,7 @@ public class RegisteredUserController {
 
 		RegisteredUser user = registeredUserService.createRegisteredUser(registeredUser);
 
-		user.sendRegistrationConfirmationEmail(emailService);
+		emailService.sendRegistrationConfirmationEmail(user);
 
 		return user;
 	}
