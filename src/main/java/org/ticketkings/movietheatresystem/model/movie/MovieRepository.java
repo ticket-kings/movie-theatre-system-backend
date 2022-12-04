@@ -6,6 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Boundary class that is used to query the database for Movie objects
+ */
 @Repository
 public interface MovieRepository extends JpaRepository<Movie, Integer> {
     @Query("select m from Movie m where m.name like %:name%")
