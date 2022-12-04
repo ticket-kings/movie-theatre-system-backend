@@ -39,4 +39,14 @@ public class UserService {
 
         return optional.get();
     }
+
+    public void deleteUser(Integer id) {
+        Optional<User> optional = userRepository.findById(id);
+
+        if (optional.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User with ID: " + id + " does not exist");
+        }
+
+        userRepository.delete(optional.get());
+    }
 }
