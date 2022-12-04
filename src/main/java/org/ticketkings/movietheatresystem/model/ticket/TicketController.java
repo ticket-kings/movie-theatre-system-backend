@@ -19,6 +19,9 @@ import org.ticketkings.movietheatresystem.model.user.UserService;
 
 import java.util.List;
 
+/**
+ * Controller class that directs the ticket API endpoints to the correct service functionality
+ */
 @RestController
 @RequestMapping(path = "api/v1/ticket")
 public class TicketController {

@@ -15,6 +15,9 @@ import org.ticketkings.movietheatresystem.model.payment.ticket.TicketPayment;
 import org.ticketkings.movietheatresystem.model.ticket.Ticket;
 import org.ticketkings.movietheatresystem.model.ticket.TicketService;
 
+/**
+ * Controller class that directs the registered user API endpoints to the correct service functionality
+ */
 @RestController
 @RequestMapping(path = "api/v1/user/registered")
 public class RegisteredUserController {

@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Controller class that directs the user API endpoints to the correct service functionality
+ */
 @RestController
 @RequestMapping(path = "api/v1/user")
 public class UserController {

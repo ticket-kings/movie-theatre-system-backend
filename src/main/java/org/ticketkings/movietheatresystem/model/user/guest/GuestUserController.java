@@ -7,6 +7,9 @@ import org.ticketkings.movietheatresystem.model.card.CardService;
 
 import java.util.List;
 
+/**
+ * Controller class that directs the guest user API endpoints to the correct service functionality
+ */
 @RestController
 @RequestMapping(path = "api/v1/user/guest")
 public class GuestUserController {
