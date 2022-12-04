@@ -4,8 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class ShowtimeService {
@@ -50,5 +49,25 @@ public class ShowtimeService {
         Showtime showtime = findByIdOrError(id);
         if (showtime.getReservedSeats() >= showtime.getCapacity())
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Showtime with ID: " + id + " is already at max capacity");
+    }
+
+    public List<Showtime> createDefaultShowtimes() {
+        Showtime showtime1 = new Showtime(daysFromNow(2), 0, 2);
+        Showtime createdShowtime1 = showtimeRepository.save(showtime1);
+
+        Showtime showtime2 = new Showtime(daysFromNow(4), 0, 2);
+        Showtime createdShowtime2 = showtimeRepository.save(showtime2);
+
+        List<Showtime> showtimeList = new ArrayList<>();
+        showtimeList.add(createdShowtime1);
+        showtimeList.add(createdShowtime2);
+
+        return showtimeList;
+    }
+
+    private Date daysFromNow(int days) {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, days);
+        return cal.getTime();
     }
 }

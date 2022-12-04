@@ -58,4 +58,18 @@ public class SeatService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Seat with ID: " + id + " is already reserved");
         }
     }
+
+    public void createDefaultSeats(Integer showtimeId) {
+        for (int i = 1; i <= 5; i++) {
+            Seat seat = new Seat("A" + i, 10F, false);
+            seat.setShowtimeId(showtimeId);
+            seatRepository.save(seat);
+        }
+
+        for (int i = 1; i <= 5; i++) {
+            Seat seat = new Seat("B" + i, 10F, false);
+            seat.setShowtimeId(showtimeId);
+            seatRepository.save(seat);
+        }
+    }
 }

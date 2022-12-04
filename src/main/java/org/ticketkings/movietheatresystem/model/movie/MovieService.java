@@ -46,4 +46,9 @@ public class MovieService {
         return movieRepository.save(movie);
     }
 
+    public Movie createMovie(Movie movie) {
+        movie.setIsReleased(false);
+        return movieRepository.save(movie);
+    }
+
 }
