@@ -5,11 +5,16 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.ticketkings.movietheatresystem.email.EmailService;
 import org.ticketkings.movietheatresystem.model.seat.SeatService;
 import org.ticketkings.movietheatresystem.model.showing.Showing;
 import org.ticketkings.movietheatresystem.model.showing.ShowingService;
 import org.ticketkings.movietheatresystem.model.showtime.Showtime;
 import org.ticketkings.movietheatresystem.model.showtime.ShowtimeService;
+import org.ticketkings.movietheatresystem.model.user.User;
+import org.ticketkings.movietheatresystem.model.user.UserService;
+import org.ticketkings.movietheatresystem.model.user.registered.RegisteredUser;
+import org.ticketkings.movietheatresystem.model.user.registered.RegisteredUserService;
 
 @RestController
 @RequestMapping(path = "api/v1/movie")
@@ -19,18 +24,27 @@ public class MovieController {
     private final ShowingService showingService;
     private final ShowtimeService showtimeService;
     private final SeatService seatService;
+    private final RegisteredUserService registeredUserService;
+    private final UserService userService;
+    private final EmailService emailService;
 
     @Autowired
     public MovieController(
             MovieService movieService,
             ShowingService showingService,
             ShowtimeService showtimeService,
-            SeatService seatService
+            SeatService seatService,
+            RegisteredUserService registeredUserService,
+            UserService userService,
+            EmailService emailService
     ) {
         this.movieService = movieService;
         this.showingService = showingService;
         this.showtimeService = showtimeService;
         this.seatService = seatService;
+        this.registeredUserService = registeredUserService;
+        this.userService = userService;
+        this.emailService = emailService;
     }
 
     @GetMapping
@@ -68,7 +82,11 @@ public class MovieController {
             showtimeService.updateShowtime(showtime);
         }
 
-        return movieService.releaseMovie(movieId);
+        Movie movie = movieService.releaseMovie(movieId);
+        List<User> users = userService.getUsers();
+        emailService.sendMovieReleasedEmail(movie, users);
+
+        return movie;
     }
 
     @GetMapping("released")
@@ -85,6 +103,10 @@ public class MovieController {
             seatService.createDefaultSeats(showtime.getId());
             showingService.createDefaultShowing(createdMovie.getId(), showtime.getId());
         }
+
+        List<RegisteredUser> users = registeredUserService.getRegisteredUsers();
+        emailService.sendMovieCreatedEmail(movie, users);
+
         return createdMovie;
     }
 }

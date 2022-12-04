@@ -6,12 +6,14 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.ticketkings.movietheatresystem.model.credit.Credit;
+import org.ticketkings.movietheatresystem.model.movie.Movie;
 import org.ticketkings.movietheatresystem.model.ticket.Ticket;
 import org.ticketkings.movietheatresystem.model.user.User;
 import org.ticketkings.movietheatresystem.model.user.registered.RegisteredUser;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -23,7 +25,7 @@ public class EmailService {
 
     @Value("${spring.mail.username}") private String sender;
 
-    public void sendEmail(EmailDetails details)
+    private void sendEmail(EmailDetails details)
     {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
 
@@ -101,7 +103,7 @@ public class EmailService {
                     "Please note that you will not receive any credit if you cancel less than 72 hours before showtime.\n\n";
     }
 
-    public void createCreditEmail(User user, Credit credit) {
+    public void sendCreditEmail(User user, Credit credit) {
         sendEmail(new EmailDetails(
                 user.getEmailAddress(),
                 "Ticket Cancellation Confirmation",
@@ -130,5 +132,42 @@ public class EmailService {
                 "Ticket Kings Inc.";
     }
 
+    public void sendMovieReleasedEmail(Movie movie, List<User> users) {
+        for (User user: users) {
+            sendEmail(new EmailDetails(
+                            user.getEmailAddress(),
+                            movie.getName() + " is finally here!",
+                            createMovieReleasedBody(movie, user)
+                    )
+            );
+        }
+    }
 
+    private String createMovieReleasedBody(Movie movie, User user) {
+        return user.getName() + ",\n\n" +
+                "The long wait is over. Book your seat for " + movie.getName() + " in theatres now!\n\n" +
+                movie.getDescription() + "\n\n" +
+                "Get your tickets today!\n\n" +
+                "Ticket Kings Inc.";
+    }
+
+    public void sendMovieCreatedEmail(Movie movie, List<RegisteredUser> users) {
+        for (RegisteredUser user: users) {
+            sendEmail(new EmailDetails(
+                            user.getEmailAddress(),
+                            "Ticket preorders for " + movie.getName() + " are now available!",
+                            createMovieCreatedBody(movie, user)
+                    )
+            );
+        }
+    }
+
+    private String createMovieCreatedBody(Movie movie, RegisteredUser user) {
+        return user.getName() + ",\n\n" +
+                "As you are on our registered list of users, you have first dibs on movies before they are released!" + "\n\n" +
+                "Book your seat for " + movie.getName() + " in theatres now!\n\n" +
+                movie.getDescription() + "\n\n" +
+                "Get your tickets today!\n\n" +
+                "Ticket Kings Inc.";
+    }
 }

@@ -74,7 +74,7 @@ public class TicketController {
         User user = userService.getUserByCardId(ticket.getPayment().getCardId());
 
         Credit credit = creditService.createCredit(user, showtime, seat);
-        emailService.createCreditEmail(user, credit);
+        emailService.sendCreditEmail(user, credit);
 
         return credit;
     }
